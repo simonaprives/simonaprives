@@ -20,28 +20,29 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^0.140.17",
-    "@sanity/cli": "^0.140.17",
-    "@sanity/code-input": "^0.140.12",
-    "@sanity/components": "^0.140.20",
-    "@sanity/core": "^0.139.3",
-    "@sanity/default-layout": "^0.140.20",
-    "@sanity/default-login": "^0.140.15",
-    "@sanity/desk-tool": "^0.140.20",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "@sanity/base": "^2.0.9",
+    "@sanity/cli": "^4.14.2",
+    "@sanity/code-input": "^6.0.3",
+    "@sanity/components": "^2.14.0",
+    "@sanity/core": "^2.36.2",
+    "@sanity/default-layout": "^2.2.6",
+    "@sanity/default-login": "^2.11.1",
+    "@sanity/desk-tool": "^2.1.6",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "eslint": "^9.39.1",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^9.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-standard": "^4.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-config-standard-react": "^13.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-standard": "^5.0.0",
     "prettier-eslint-cli": "^8.0.1"
   }
 }

@@ -20,6 +20,38 @@ This is a monorepo with a pre-configured Sanity Studio (`/studio`) and a very ba
     - 11ty outputs the static files in `_site`
 4. `npm run build` to build to production locally
 
+## Node version
+
+This project requires Node.js v20.19.0 (Sanity recommends this version). A `.nvmrc` file has been added to the repo root to pin the Node version.
+
+Recommended ways to use the correct Node version:
+
+- nvm (Node Version Manager):
+
+```bash
+nvm install 20.19.0
+nvm use 20.19.0     # reads .nvmrc when run from the project root
+nvm alias default 20.19.0
+```
+
+- Volta (fast, per-user toolchain):
+
+```bash
+curl https://get.volta.sh | bash
+volta install node@20.19.0
+```
+
+- asdf (if you use it): add `nodejs 20.19.0` to your `tool-versions`.
+
+You can also add an `engines` field to `package.json` to document the requirement:
+
+```json
+"engines": {
+  "node": "20.19.0"
+}
+```
+
+
 ## Deploy on Netlify
 
 You can host both the studio and the 11ty blog on [Netlify](https://netlify.com) as two apps. Log in to your Netlify account and add them as two separate apps with the following settings:
