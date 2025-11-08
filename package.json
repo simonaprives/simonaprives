@@ -26,5 +26,15 @@
   "homepage": "https://github.com/kmelve/11ty-sanity-experiment#readme",
   "devDependencies": {
     "lerna": "^3.13.4"
+  },
+  "dependencies": {
+    "nvm": "^0.0.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^4.14.2",
+    "styled-components": "^6.1.19"
+  },
+  "engines": {
+    "node": "20.19.0"
   }
 }

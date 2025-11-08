@@ -1,47 +1,37 @@
 {
-  "name": "sanitytutorialblog",
+  "name": "simonaprives",
   "private": true,
   "version": "1.0.0",
-  "description": "",
   "main": "package.json",
-  "author": "Knut Melvær <knut@sanity.io>",
   "license": "UNLICENSED",
   "scripts": {
-    "init": "sanity init --reconfigure",
-    "dev": "sanity start",
-    "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",
+    "dev": "sanity dev",
+    "start": "sanity start",
     "build": "sanity build",
-    "now-build": "sanity build",
-    "graphql-deploy": "sanity graphql deploy --playground",
-    "lint": "eslint .",
-    "test": "sanity check"
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^0.140.17",
-    "@sanity/cli": "^0.140.17",
-    "@sanity/code-input": "^0.140.12",
-    "@sanity/components": "^0.140.20",
-    "@sanity/core": "^0.139.3",
-    "@sanity/default-layout": "^0.140.20",
-    "@sanity/default-login": "^0.140.15",
-    "@sanity/desk-tool": "^0.140.20",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "@sanity/vision": "^4.14.2",
+    "react": "^19.1",
+    "react-dom": "^19.1",
+    "sanity": "^4.14.2",
+    "styled-components": "^6.1.18"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^9.39.1",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^9.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-standard": "^4.0.0",
-    "prettier-eslint-cli": "^8.0.1"
+    "@sanity/eslint-config-studio": "^5.0.2",
+    "@types/react": "^19.1",
+    "eslint": "^9.28",
+    "prettier": "^3.5",
+    "typescript": "^5.8"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
   }
 }
