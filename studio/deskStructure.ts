@@ -11,6 +11,11 @@ export default function deskStructure(S: any) {
         .schemaType('aboutPage')
         .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
       S.listItem()
+        .title('CV')
+        .icon(DocumentIcon)
+        .schemaType('cv')
+        .child(S.document().schemaType('cv').documentId('cv')),
+      S.listItem()
         .title('Biolinks')
         .icon(DocumentIcon)
         .schemaType('biolinks')

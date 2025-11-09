@@ -16,10 +16,14 @@ export default defineType({
       type: 'text',
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
-      options: {hotspot: true},
+      name: 'keywords',
+      type: 'array',
+      title: 'Keywords',
+      description: 'Add keywords that describes your site.',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags'
+      },
     }),
   ],
   preview: {

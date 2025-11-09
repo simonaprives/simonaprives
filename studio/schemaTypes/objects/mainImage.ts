@@ -29,7 +29,6 @@ export default {
             : true;
         }),
       options: {
-        isHighlighted: true,
         hotspot: true
       }
     }
