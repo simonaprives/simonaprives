@@ -7,8 +7,9 @@ import siteSettings from './siteSettings'
 import biolinks from './biolinks'
 
 //object schemas
-import blockContent from './blockContent'
-import link from './link'
+import blockContent from './objects/blockContent'
+import link from './objects/link'
+import mainImage from './objects/mainImage'
 
 export const schemaTypes = [
     siteSettings, 
@@ -20,5 +21,6 @@ export const schemaTypes = [
     
     //objects
     blockContent,
+    mainImage,
     link
 ]
