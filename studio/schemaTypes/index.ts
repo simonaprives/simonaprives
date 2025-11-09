@@ -6,6 +6,7 @@ import aboutPage from './aboutPage'
 import siteSettings from './siteSettings'
 import biolinks from './biolinks'
 import cv from './cv'
+import artworkExhibits from './artworkExhibits'
 
 //object schemas
 import blockContent from './objects/blockContent'
@@ -15,6 +16,7 @@ import exhibition from './objects/exhibition'
 import residency from './objects/residency'
 import teaching from './objects/teaching'
 import education from './objects/education'
+import artworkExhibit from './objects/artworkExhibit'
 
 export const schemaTypes = [
     siteSettings, 
@@ -24,6 +26,7 @@ export const schemaTypes = [
     author, 
     category,
     cv,
+    artworkExhibits,
     
     //objects
     blockContent,
@@ -32,5 +35,6 @@ export const schemaTypes = [
     exhibition,
     residency,
     teaching,
-    education
+    education,
+    artworkExhibit
 ]

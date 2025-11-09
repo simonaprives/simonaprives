@@ -1,5 +1,6 @@
 import { DocumentIcon } from '@sanity/icons'
 import { CogIcon } from '@sanity/icons'
+import { ImagesIcon } from '@sanity/icons'
 
 export default function deskStructure(S: any) {
   return S.list()
@@ -20,6 +21,8 @@ export default function deskStructure(S: any) {
         .icon(DocumentIcon)
         .schemaType('biolinks')
         .child(S.document().schemaType('biolinks').documentId('biolinks')),
+      S.documentTypeListItem('artworkExhibits')
+        .icon(ImagesIcon),
       S.divider(),
       S.listItem()
         .title('Site settings')
