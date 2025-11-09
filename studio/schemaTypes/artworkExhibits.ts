@@ -6,6 +6,12 @@ export default defineType({
   name: 'artworkExhibits',
   title: 'Exhibits',
   type: 'document',
+  groups: [
+    {
+      name: 'gallery',
+      title: 'Gallery'
+    }
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -14,7 +20,7 @@ export default defineType({
     }),
     defineField({
       name: 'mainImage',
-      title: 'Main image (read-only)',
+      title: 'Main image',
       type: 'mainImage',
       readOnly: true,
       description:
@@ -52,13 +58,31 @@ export default defineType({
     }),
     defineField({
       name: 'images',
-      title: 'Images',
+      title: 'Gallery',
+      group: 'gallery',
       icon: ImagesIcon,
       type: 'array',
       of: [
         {
         type: 'mainImage',
         title: 'Image',
+        // provide an explicit preview for array items so thumbnails and labels render reliably
+        preview: {
+          select: {
+            alt: 'alt',
+            caption: 'caption',
+            assetRef: 'asset._ref',
+            imageUrl: 'asset.url',
+          },
+          prepare(selection: any) {
+            const {alt, caption, assetRef, imageUrl} = selection || {}
+            return {
+              title: alt || 'Image',
+              subtitle: caption || undefined,
+              media: assetRef ? ({asset: {_ref: assetRef}} as any) : undefined,
+            }
+          }
+        }
         }
       ]
     }),
@@ -67,8 +91,16 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      // use the first image in the `images` array as the gallery main image
+      slug: 'slug',
       media: 'mainImage',
+    },
+    prepare({title = 'No title', slug = {}, media}: any) {
+      const path = `/${slug?.current || ''}`
+      return {
+        title,
+        media,
+        subtitle: path,
+      }
     },
   },
 })
