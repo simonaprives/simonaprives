@@ -19,6 +19,13 @@ export default {
         type: 'string'
       },
       {
+        name: 'exhibitReference',
+        title: 'Exhibit Reference',
+        type: 'reference',
+        description: 'Optionally link the exhibit to the portfolio page',
+        to: [{ type: 'artworkExhibits' }],
+      },
+      {
         name: 'location',
         title: 'Exhibition Location',
         type: 'string'
