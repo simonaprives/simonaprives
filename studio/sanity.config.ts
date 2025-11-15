@@ -12,7 +12,10 @@ export default defineConfig({
   dataset: 'production',
   subtitle: 'production',
   icon: DiamondIcon,
-  plugins: [structureTool({structure: deskStructure}), visionTool()],
+  plugins: [
+    structureTool({structure: (S, context) => deskStructure(S, context)}),
+    visionTool(),
+  ],
   schema: {
     types: schemaTypes,
   },

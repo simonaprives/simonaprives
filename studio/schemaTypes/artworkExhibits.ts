@@ -1,6 +1,7 @@
 import {defineField, defineType} from 'sanity'
 import ReadOnlyMainImage from '../components/ReadOnlyMainImage'
 import { ImagesIcon } from '@sanity/icons'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'artworkExhibits',
@@ -13,6 +14,8 @@ export default defineType({
     }
   ],
   fields: [
+    // Add the orderRank field required by the orderable-document-list plugin
+    orderRankField({ type: 'artworkExhibits' }),
     defineField({
       name: 'title',
       title: 'Title',
@@ -103,4 +106,6 @@ export default defineType({
       }
     },
   },
+  // Optional: make the plugin's ordering available to other desks or queries
+  orderings: [orderRankOrdering],
 })
