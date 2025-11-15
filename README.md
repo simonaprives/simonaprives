@@ -1,4 +1,6 @@
-# Eleventy and Sanity Blog Boilerplate
+# Simona Prives 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2d5a1590-9aa8-415b-9660-8f12c51b0369/deploy-status)](https://app.netlify.com/projects/simonaprives/deploys)
 
 Minimal blog with [Eleventy](https://11ty.io) and [Sanity](https://www.sanity.io).
 
