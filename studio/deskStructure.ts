@@ -1,8 +1,10 @@
+import {structureTool, StructureBuilder} from 'sanity/structure'
 import { DocumentIcon } from '@sanity/icons'
 import { CogIcon } from '@sanity/icons'
 import { ImagesIcon } from '@sanity/icons'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
-export default function deskStructure(S: any) {
+export default function deskStructure(S: any, context: any) {
   return S.list()
     .title('Content')
     .items([
@@ -21,8 +23,15 @@ export default function deskStructure(S: any) {
         .icon(DocumentIcon)
         .schemaType('biolinks')
         .child(S.document().schemaType('biolinks').documentId('biolinks')),
-      S.documentTypeListItem('artworkExhibits')
-        .icon(ImagesIcon),
+      // Drag-to-order Exhibits using the orderable-document-list plugin
+      orderableDocumentListDeskItem({
+        type: 'artworkExhibits',
+        title: 'Exhibits',
+        icon: ImagesIcon,
+        // pass S/context from the structure callback
+        S,
+        context,
+      }),
       S.divider(),
       S.listItem()
         .title('Site settings')

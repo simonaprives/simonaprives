@@ -10,9 +10,6 @@ export default {
       name: 'caption',
       type: 'string',
       title: 'Caption',
-      options: {
-        isHighlighted: true
-      }
     },
     {
       name: 'alt',
