@@ -9,7 +9,8 @@ export default {
     {
       name: 'caption',
       type: 'string',
-      title: 'Caption',
+      title: 'Caption (Optional)',
+      description: 'This field is not used very often.'
     },
     {
       name: 'alt',

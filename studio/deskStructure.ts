@@ -32,6 +32,11 @@ export default function deskStructure(S: any, context: any) {
         S,
         context,
       }),
+      S.listItem()
+        .title('On Paper')
+        .icon(ImagesIcon)
+        .schemaType('artworkOnPaper')
+        .child(S.document().schemaType('artworkOnPaper').documentId('artworkOnPaper')),
       S.divider(),
       S.listItem()
         .title('Site settings')

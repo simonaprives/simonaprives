@@ -7,6 +7,7 @@ import siteSettings from './siteSettings'
 import biolinks from './biolinks'
 import cv from './cv'
 import artworkExhibits from './artworkExhibits'
+import artworksOnPaper from './artworksOnPaper'
 
 //object schemas
 import blockContent from './objects/blockContent'
@@ -17,6 +18,7 @@ import residency from './objects/residency'
 import teaching from './objects/teaching'
 import education from './objects/education'
 import artworkExhibit from './objects/artworkExhibit'
+import artworkOnPaper from './objects/artworkOnPaper'
 
 export const schemaTypes = [
     siteSettings, 
@@ -27,6 +29,7 @@ export const schemaTypes = [
     category,
     cv,
     artworkExhibits,
+    artworksOnPaper,
     
     //objects
     blockContent,
@@ -36,5 +39,6 @@ export const schemaTypes = [
     residency,
     teaching,
     education,
-    artworkExhibit
+    artworkExhibit,
+    artworkOnPaper
 ]

@@ -6,16 +6,25 @@ import {useFormValue, useClient} from 'sanity'
 // patching the document when the first image changes.
 export default function ReadOnlyMainImage() {
   const client = useClient({apiVersion: '2023-01-01'})
+  // Support multiple gallery field names: `images` (array of image objects)
+  // and `images1` (array of artwork items that may contain `mainImage`).
   const images = useFormValue(['images']) as any[] | undefined
+  const images1 = useFormValue(['images1']) as any[] | undefined
   const main = useFormValue(['mainImage']) as any | undefined
   const id = useFormValue(['_id']) as string | undefined
-  const first = images && images.length > 0 ? images[0] : undefined
+  // Determine the first image: prefer `images` array items (image objects),
+  // otherwise try `images1[0].mainImage` for item arrays.
+  let first = images && images.length > 0 ? images[0] : undefined
+  if (!first && images1 && images1.length > 0) {
+    const item = images1[0]
+    first = item && item.mainImage ? item.mainImage : undefined
+  }
   const prevRef = useRef<string | undefined>(undefined)
 
   // Auto-sync: when the first image asset ref changes, patch the document's
   // `mainImage` to match. Use a ref to avoid duplicate patches.
   useEffect(() => {
-    const firstRef = first?.asset?._ref
+  const firstRef = first?.asset?._ref
     if (!id) return
     if (!firstRef) return
     const mainRef = main?.asset?._ref
@@ -23,7 +32,7 @@ export default function ReadOnlyMainImage() {
     if (prevRef.current === firstRef) return
     prevRef.current = firstRef
 
-    // Patch the document to set mainImage to the first image
+    // Patch the document to set mainImage to the first image (or nested mainImage)
     client
       .patch(id)
       .set({mainImage: first})
@@ -35,7 +44,7 @@ export default function ReadOnlyMainImage() {
 
   let src: string | undefined
   try {
-    const ref = first?.asset?._ref
+  const ref = first?.asset?._ref
     if (typeof ref === 'string' && ref.startsWith('image-')) {
       // ref example: image-<id>-<width>x<height>-png
       const rest = ref.slice(6)
@@ -43,9 +52,18 @@ export default function ReadOnlyMainImage() {
       const ext = parts.pop()
       const idAndDims = parts.join('-')
       const filename = `${idAndDims}.${ext}`
-      const projectId = 'xkgmhl6j'
-      const dataset = 'production'
-      src = `https://cdn.sanity.io/images/${projectId}/${dataset}/${filename}`
+      // Prefer to read project/dataset from the client config so this works
+      // across environments.
+      try {
+        const cfg = client.config() as any
+        const projectId = cfg.projectId || 'xkgmhl6j'
+        const dataset = cfg.dataset || 'production'
+        src = `https://cdn.sanity.io/images/${projectId}/${dataset}/${filename}`
+      } catch (err) {
+        const projectId = 'xkgmhl6j'
+        const dataset = 'production'
+        src = `https://cdn.sanity.io/images/${projectId}/${dataset}/${filename}`
+      }
     }
   } catch (err) {
     // swallow
