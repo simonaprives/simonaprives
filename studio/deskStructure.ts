@@ -9,20 +9,23 @@ export default function deskStructure(S: any, context: any) {
     .title('Content')
     .items([
       S.listItem()
+        .id('aboutPage')
         .title('About')
         .icon(DocumentIcon)
         .schemaType('aboutPage')
-        .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
+        .child(() => S.document().schemaType('aboutPage').documentId('aboutPage')),
       S.listItem()
+        .id('cv')
         .title('CV')
         .icon(DocumentIcon)
         .schemaType('cv')
-        .child(S.document().schemaType('cv').documentId('cv')),
+        .child(() => S.document().schemaType('cv').documentId('cv')),
       S.listItem()
+        .id('biolinks')
         .title('Biolinks')
         .icon(DocumentIcon)
         .schemaType('biolinks')
-        .child(S.document().schemaType('biolinks').documentId('biolinks')),
+        .child(() => S.document().schemaType('biolinks').documentId('biolinks')),
       // Drag-to-order Exhibits using the orderable-document-list plugin
       orderableDocumentListDeskItem({
         type: 'artworkExhibits',
@@ -33,17 +36,18 @@ export default function deskStructure(S: any, context: any) {
         context,
       }),
       S.listItem()
+        .id('artworkOnPaper')
         .title('On Paper')
         .icon(ImagesIcon)
         .schemaType('artworkOnPaper')
-        .child(S.document().schemaType('artworkOnPaper').documentId('artworkOnPaper')),
+        .child(() => S.document().schemaType('artworkOnPaper').documentId('artworkOnPaper')),
       S.divider(),
       S.listItem()
         .title('Site settings')
         .icon(CogIcon)
         .id('siteSettings')
         .schemaType('siteSettings')
-        .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
+        .child(() => S.document().schemaType('siteSettings').documentId('siteSettings')),
       S.documentTypeListItem('post')
     ])
 }
