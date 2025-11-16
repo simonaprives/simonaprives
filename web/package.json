@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx eleventy",
-    "watch": "npx eleventy --watch",
-    "dev": "npm run watch",
+  "build": "npx eleventy",
+  "watch": "npx eleventy --watch",
+  "serve": "npx eleventy --serve --watch",
+  "dev": "npm run serve",
     "now-build": "npm run build",
     "debug": "DEBUG=* npx eleventy"
   },

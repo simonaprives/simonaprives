@@ -22,6 +22,18 @@ This is a monorepo with a pre-configured Sanity Studio (`/studio`) and a very ba
     - 11ty outputs the static files in `_site`
 4. `npm run build` to build to production locally
 
+### Run the front-end locally
+
+If you only want to run the Eleventy front-end (no Studio), run:
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Then open http://localhost:8080 in your browser. Eleventy will watch source files and reload via Browsersync.
+
 ## Node version
 
 This project requires Node.js v20.19.0 (Sanity recommends this version). A `.nvmrc` file has been added to the repo root to pin the Node version.

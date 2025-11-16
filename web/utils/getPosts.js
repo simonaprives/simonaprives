@@ -2,12 +2,26 @@ const BlocksToMarkdown = require('@sanity/block-content-to-markdown')
 const groq = require('groq')
 const client = require('./sanityClient.js')
 const serializers = require('./serializers')
+const imageUrlBuilder = require('@sanity/image-url')
+
+const builder = imageUrlBuilder(client)
 
 function generatePost (post) {
-  return {
-    ...post,
-    body: BlocksToMarkdown(post.body, { serializers, ...client.config() })
+  const body = BlocksToMarkdown(post.body, { serializers, ...client.config() })
+
+  let previewImageUrl = null
+  if (post && post.mainImage) {
+    try {
+      previewImageUrl = builder.image(post.mainImage).width(1200).url()
+    } catch (err) {
+      previewImageUrl = null
+    }
   }
+
+  return Object.assign({}, post, {
+    body,
+    previewImageUrl
+  })
 }
 
 async function getPosts () {
@@ -16,6 +30,7 @@ async function getPosts () {
     _id,
     publishedAt,
     title,
+    mainImage,
     slug,
     body[]{
       ...,
