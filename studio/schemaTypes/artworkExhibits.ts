@@ -56,7 +56,8 @@ export default defineType({
     }),
     defineField({
       name: 'photoCredit',
-      title: 'Photo Credit',
+      title: 'Photo Credit (optional)',
+      description: 'Add name of photographer who shot the work',
       type: 'string',
     }),
     defineField({

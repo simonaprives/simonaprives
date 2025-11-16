@@ -26,6 +26,11 @@ export default {
         to: [{ type: 'artworkExhibits' }],
       },
       {
+        name: 'galleryName',
+        title: 'Gallery name',
+        type: 'string'
+      },
+      {
         name: 'location',
         title: 'Exhibition Location',
         type: 'string'
