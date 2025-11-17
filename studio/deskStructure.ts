@@ -2,6 +2,7 @@ import {structureTool, StructureBuilder} from 'sanity/structure'
 import { DocumentIcon } from '@sanity/icons'
 import { CogIcon } from '@sanity/icons'
 import { ImagesIcon } from '@sanity/icons'
+import { VideoIcon } from '@sanity/icons'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
 export default function deskStructure(S: any, context: any) {
@@ -41,6 +42,12 @@ export default function deskStructure(S: any, context: any) {
         .icon(ImagesIcon)
         .schemaType('artworkOnPaper')
         .child(() => S.document().schemaType('artworkOnPaper').documentId('artworkOnPaper')),
+      S.listItem()
+        .id('artworksInMotion')
+        .title('In motion')
+        .icon(VideoIcon)
+        .schemaType('artworksInMotion')
+        .child(() => S.document().schemaType('artworksInMotion').documentId('artworskInMotion')),
       S.divider(),
       S.listItem()
         .title('Site settings')
