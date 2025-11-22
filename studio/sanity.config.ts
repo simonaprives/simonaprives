@@ -3,6 +3,7 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import deskStructure from './deskStructure'
+import {media} from 'sanity-plugin-media'
 import { DiamondIcon } from '@sanity/icons'
 
 export default defineConfig({
@@ -15,6 +16,7 @@ export default defineConfig({
   plugins: [
     structureTool({structure: (S, context) => deskStructure(S, context)}),
     visionTool(),
+    media(),
   ],
   schema: {
     types: schemaTypes,
