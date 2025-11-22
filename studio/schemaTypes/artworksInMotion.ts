@@ -1,6 +1,5 @@
 import {defineField, defineType} from 'sanity'
 import ReadOnlyMainImage from '../components/ReadOnlyMainImage'
-import { ImagesIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'artworksInMotion',
@@ -33,8 +32,14 @@ export default defineType({
           type: 'mainImage',
           readOnly: true,
           description:
-          'Read-only. This reflects the first image in the Images array — edit the Images array to change the gallery main image. This image is primarily used for SEO and social share.',
+          'Read-only. This field reflects the first image in gallery. This image is primarily used for SEO and social share.',
           components: {input: ReadOnlyMainImage},
+      }),
+      defineField({
+        name: 'description',
+        title: 'Description',
+        description: 'This field is primarily used for SEO and social share.',
+        type: 'string',
       }),
       defineField({
         name: 'videos',

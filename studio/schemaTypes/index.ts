@@ -22,6 +22,7 @@ import artworkExhibit from './objects/artworkExhibit'
 import artworkOnPaper from './objects/artworkOnPaper'
 import artworkInMotionItem from './objects/artworkInMotionItem'
 
+
 export const schemaTypes = [
     siteSettings, 
     post, 

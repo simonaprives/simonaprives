@@ -16,35 +16,21 @@ export default {
       description: 'Displays on social share previews',
     },
     {
+     name: 'videoUrl',
+     title: 'Video url',
+     type: 'url',
+     description: 'Ensure that field includes an url like https://vimeo.com/661763692',
+     validation: (Rule) =>
+        Rule.uri({
+          allowRelative: true,
+          scheme: ['https'],
+        }),
+    },
+    {
       name: 'mainImage',
       type: 'mainImage',
       title: 'Poster Image',
       description: 'Add a photo that displays in social sharing preview'
-    },
-    {
-     name: 'vimeo',
-     title: 'Vimeo Video',
-     type: 'object',
-     description: 'Video url + accessible description (grouped)',
-     fields: [
-       {
-         name: 'url',
-         type: 'url',
-         title: 'YouTube video URL',
-         validation: (Rule: { uri: (arg0: { scheme: string[] }) => any }) => Rule.uri({ scheme: ['http', 'https'] })
-       },
-       {
-         name: 'description',
-         type: 'string',
-         title: 'Video description (for accessibility / caption)'
-       },
-       {
-         name: 'preferVideo',
-         type: 'boolean',
-         title: 'Prefer showing video over image',
-         initialValue: false
-       }
-     ]
     },
   ],
   preview: {
