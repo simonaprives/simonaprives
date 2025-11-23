@@ -9,6 +9,7 @@ import cv from './cv'
 import artworkExhibits from './artworkExhibits'
 import artworksOnPaper from './artworksOnPaper'
 import artworksInMotion from './artworksInMotion'
+import homePage from './homePage'
 
 //object schemas
 import blockContent from './objects/blockContent'
@@ -34,6 +35,7 @@ export const schemaTypes = [
     artworkExhibits,
     artworksOnPaper,
     artworksInMotion,
+    homePage,
     
     //objects
     blockContent,

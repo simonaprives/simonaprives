@@ -10,6 +10,12 @@ export default function deskStructure(S: any, context: any) {
     .title('Content')
     .items([
       S.listItem()
+        .id('homePage')
+        .title('Home')
+        .icon(DocumentIcon)
+        .schemaType('homePage')
+        .child(() => S.document().schemaType('homePage').documentId('homePage')),
+      S.listItem()
         .id('aboutPage')
         .title('About')
         .icon(DocumentIcon)
