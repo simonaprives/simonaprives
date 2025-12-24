@@ -1,0 +1,77 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-cv
+tags:
+  - nav
+navtitle: CV
+permalink: cv/index.html
+---
+
+<p><a href="{{ '/' | url }}">← Home</a></p>
+
+<article>
+  <h1>{{ cvPage.title }}</h1>
+
+  {% if cvPage.exhibitions %}
+    <section>
+      <h2>Select Exhibitions</h2>
+      <ul>
+        {% for exhibition in cvPage.exhibitions %}
+          <li>
+            <strong>{{ exhibition.ExhibitionYear }}</strong>
+            {% if exhibition.title %} — {{ exhibition.title }}{% endif %}
+            {% if exhibition.galleryName or exhibition.location %} |
+              {% if exhibition.galleryName %}{{ exhibition.galleryName }}{% endif %}
+              {% if exhibition.location %}{% if exhibition.galleryName %}, {% endif %}{{ exhibition.location }}{% endif %}
+            {% endif %}
+            {% if exhibition.solo %}| <em>Solo</em>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if cvPage.residencies %}
+    <section>
+      <h2>Residencies</h2>
+      <ul>
+        {% for residency in cvPage.residencies %}
+          <li>
+            <strong>{{ residency.residencyYear }}</strong>
+            {% if residency.title %} — {{ residency.title }}{% endif %}
+            {% if residency.location %}<br>{{ residency.location }}{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if cvPage.teaching %}
+    <section>
+      <h2>Teaching</h2>
+      <ul>
+        {% for item in cvPage.teaching %}
+          <li>
+            {% if item.schoolName %}{{ item.schoolName }}{% endif %}
+            {% if item.title %}{% if item.schoolName %} — {% endif %}{{ item.title }}{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if cvPage.education %}
+    <section>
+      <h2>Education</h2>
+      <ul>
+        {% for item in cvPage.education %}
+          <li>
+            {% if item.schoolName %}{{ item.schoolName }}{% endif %}
+            {% if item.degree %}{% if item.schoolName %} — {% endif %}{{ item.degree }}{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+</article>

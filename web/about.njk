@@ -7,12 +7,10 @@ navtitle: About
 permalink: about/index.html
 ---
 
-<article>
-  <h1>{{ aboutPage.title }}</h1>
+<p><a href="{{ '/' | url }}">← Home</a></p>
 
-  {% if aboutPage.deck %}
-    <h2 class="deck">{{ aboutPage.deck }}</h2>
-  {% endif %}
+<article>
+  <h1 class="screenreader-only">{{ aboutPage.title }}</h1>
 
   {% if aboutPage.mainImageUrl %}
     <figure class="hero">
@@ -20,9 +18,13 @@ permalink: about/index.html
     </figure>
   {% endif %}
 
+  {% if aboutPage.deck %}
+    <h2 class="deck">{{ aboutPage.deck }}</h2>
+  {% endif %}
+
   {% if aboutPage.bio %}
     {{ aboutPage.bio | markdownify | safe }}
   {% endif %}
 
-  <p><a href="{{ '/' | url }}">← Home</a></p>
+  
 </article>
