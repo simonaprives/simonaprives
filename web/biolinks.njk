@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-biolinks
+tags:
+  - nav
+navtitle: Biolinks
+permalink: biolinks/index.html
+---
+
+<p><a href="{{ '/' | url }}">← Home</a></p>
+
+<article>
+  <h1>{{ biolinksPage.title }}</h1>
+
+  {% if biolinksPage.mainImageUrl %}
+    <figure class="hero">
+      <img 
+      style="width: 200px; border-radius: 9999px;"
+      src="{{ biolinksPage.mainImageUrl }}" alt="{{ biolinksPage.title }}">
+    </figure>
+  {% endif %}
+
+  {% if biolinksPage.biolinks %}
+    <ul>
+      {% for link in biolinksPage.biolinks %}
+        <li>
+          <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">
+            {{ link.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+</article>
