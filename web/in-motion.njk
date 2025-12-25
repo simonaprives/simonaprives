@@ -1,0 +1,55 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-in-motion
+tags:
+  - nav
+navtitle: In Motion
+permalink: in-motion/index.html
+---
+
+<p><a href="{{ '/' | url }}">← Home</a></p>
+
+<article>
+  <h1>{{ inMotion.title }}</h1>
+
+  {% if inMotion.description %}
+    <p>{{ inMotion.description }}</p>
+  {% endif %}
+
+  {% if inMotion.videos %}
+    <section class="gallery">
+      {% for video in inMotion.videos %}
+        <div class="video-item">
+          {% if video.videoUrl %}
+            <div class="video-embed">
+              {% set videoId = video.videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
+              {% if video.mainImage and video.mainImage.asset %}
+                {% set posterUrl = metadata.imageUrl(video.mainImage, 1200) %}
+              {% else %}
+                {% set posterUrl = "" %}
+              {% endif %}
+              <iframe 
+                src="https://player.vimeo.com/video/{{ videoId }}{% if posterUrl %}??autoplay=0{% endif %}" 
+                frameborder="0" 
+                autoplay=0
+                allow="fullscreen; picture-in-picture" 
+                allowfullscreen
+                {% if loop.first %}style="view-transition-name: in-motion-main;"{% endif %}
+                {% if posterUrl %}data-poster="{{ posterUrl }}"{% endif %}
+              ></iframe>
+            </div>
+          {% elif video.mainImage and video.mainImage.asset %}
+            {% set imageUrl = metadata.imageUrl(video.mainImage, 1200) %}
+            <img src="{{ imageUrl }}" alt="{{ video.title or inMotion.title }}" {% if loop.first %}style="view-transition-name: in-motion-main;"{% endif %}>
+          {% endif %}
+          {% if video.title %}
+            <h2 class="item-title">{{ video.title }}</h2>
+          {% endif %}
+          {# {% if video.description %}
+            <p>{{ video.description }}</p>
+          {% endif %} #}
+        </div>
+      {% endfor %}
+    </section>
+  {% endif %}
+</article>

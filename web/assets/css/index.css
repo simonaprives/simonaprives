@@ -259,6 +259,8 @@ header {
 }
 img.logo {
   height: 1em;
+  height: 1em;
+  mix-blend-mode: multiply;
 }
 
 /* Nav */
@@ -294,6 +296,11 @@ img.logo {
   ul.exhibits-list li img {
     aspect-ratio: 4 / 3;
     object-fit: cover;
+  }
+  h2.item-title {
+    margin-block: .4em;
+    font-size: clamp(.8rem, .8rem + 0.5vw, 2rem);
+    font-weight: 600;
   }
 }
 

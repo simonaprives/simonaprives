@@ -1,0 +1,38 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-on-paper
+tags:
+  - nav
+navtitle: On Paper
+permalink: on-paper/index.html
+---
+
+<p><a href="{{ '/' | url }}">← Home</a></p>
+
+<article>
+  <h1>{{ onPaper.title }}</h1>
+
+  {% if onPaper.description %}
+    <p>{{ onPaper.description }}</p>
+  {% endif %}
+
+  {% if onPaper.images1 %}
+    <section class="gallery">
+      {% for artwork in onPaper.images1 %}
+        <figure>
+          {% if artwork.mainImage and artwork.mainImage.asset %}
+            {% set imageUrl = metadata.imageUrl(artwork.mainImage, 1200) %}
+            <img src="{{ imageUrl }}" alt="{{ artwork.title or onPaper.title }}" {% if loop.first %}style="view-transition-name: on-paper-main;"{% endif %}>
+            {% if artwork.title or artwork.dimensions or artwork.description %}
+              <figcaption>
+                {% if artwork.title %}<strong>{{ artwork.title }}</strong>{% endif %}
+                {% if artwork.dimensions %}<br><em>{{ artwork.dimensions }}</em>{% endif %}
+                {% if artwork.description %}<br>{{ artwork.description }}{% endif %}
+              </figcaption>
+            {% endif %}
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </section>
+  {% endif %}
+</article>

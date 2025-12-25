@@ -22,8 +22,8 @@ export default {
      description: 'Ensure that field includes an url like https://vimeo.com/661763692',
      validation: (Rule) =>
         Rule.uri({
-          allowRelative: true,
-          scheme: ['https'],
+          allowRelative: false,
+          scheme: ['https', 'http'],
         }),
     },
     {

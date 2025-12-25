@@ -50,7 +50,7 @@ export default function deskStructure(S: any, context: any) {
         .title('In motion')
         .icon(VideoIcon)
         .schemaType('artworksInMotion')
-        .child(() => S.document().schemaType('artworksInMotion').documentId('artworskInMotion')),
+        .child(() => S.document().schemaType('artworksInMotion').documentId('artworksInMotion')),
       S.divider(),
       S.listItem()
         .title('Site settings')
