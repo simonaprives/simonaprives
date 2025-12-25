@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-exhibits
+tags:
+  - nav
+navtitle: Exhibits
+permalink: exhibits/index.html
+---
+
+<p><a href="{{ '/' | url }}">← Home</a></p>
+
+<article>
+  <h1>Exhibits</h1>
+
+  {% if exhibits.length > 0 %}
+    <ul class="exhibits-list">
+      {% for exhibit in exhibits %}
+        <li>
+          <div>
+            {% if exhibit.previewImageUrl %}
+              <a href="/exhibits/{{ exhibit.slug }}/">
+                <img src="{{ exhibit.previewImageUrl }}" alt="{{ exhibit.title }}" style="view-transition-name: exhibit-{{ exhibit.slug }};">
+              </a>
+            {% endif %}
+            <h2>
+              <a href="/exhibits/{{ exhibit.slug }}/">{{ exhibit.title }}</a>
+            </h2>
+            {# {% if exhibit.venue or exhibit.location %}
+              <p>
+                {% if exhibit.venue %}{{ exhibit.venue }}{% endif %}
+                {% if exhibit.venue and exhibit.location %} | {% endif %}
+                {% if exhibit.location %}{{ exhibit.location }}{% endif %}
+              </p>
+            {% endif %}
+            {% if exhibit.description %}
+              <p>{{ exhibit.description }}</p>
+            {% endif %} #}
+            
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+</article>

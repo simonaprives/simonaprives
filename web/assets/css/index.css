@@ -1,5 +1,5 @@
 /* Declare layer order from lowest to highest precedence */
-@layer reset, defaults, framework, components, utilities, overrides;
+@layer reset, defaults, layouts, components, utilities, overrides;
 
 @layer reset {
   html {
@@ -279,3 +279,21 @@ img.logo {
 	text-decoration: underline;
 }
 }
+
+@layer layouts {
+  article {
+    margin-top: 3rem;
+  }
+
+  ul.exhibits-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+    list-style: none;
+    gap: 2rem;
+  }
+  ul.exhibits-list li img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+}
+

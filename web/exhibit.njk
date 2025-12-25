@@ -1,0 +1,45 @@
+---
+pagination:
+  data: exhibits
+  size: 1
+  alias: exhibit
+permalink: "exhibits/{{ exhibit.slug }}/"
+layout: layouts/base.njk
+templateClass: tmpl-exhibit
+---
+
+<p><a href="{{ '/exhibits/' | url }}">← All Exhibits</a></p>
+
+<article>
+  <h1>{{ exhibit.title }}</h1>
+
+  {% if exhibit.venue or exhibit.location %}
+  <p>
+    {% if exhibit.venue %}<strong>{{ exhibit.venue }}</strong>{% endif %}
+    {% if exhibit.venue and exhibit.location %} | {% endif %}
+    {% if exhibit.location %}{{ exhibit.location }}{% endif %}
+  {% endif %}
+    {% if exhibit.description %} | {{ exhibit.description }} {% endif %}
+  </p>
+
+  {% if exhibit.images %}
+    <section class="gallery">
+      {% for image in exhibit.images %}
+        <figure>
+          {% if image.asset %}
+            {% set imageUrl = metadata.imageUrl(image, 1200) %}
+            <img src="{{ imageUrl }}" alt="{{ image.alt or exhibit.title }}" {% if loop.first %}style="view-transition-name: exhibit-{{ exhibit.slug }};"{% endif %}>
+            {% if image.caption %}
+              <figcaption>{{ image.caption }}</figcaption>
+            {% endif %}
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% if exhibit.photoCredit %}
+    <p><em>Photography: {{ exhibit.photoCredit }}</em></p>
+  {% endif %}
+
+</article>
