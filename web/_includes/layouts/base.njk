@@ -29,7 +29,7 @@
     <header>
       <div class="home"><a href="{{ '/' | url }}"><img class="logo" src="/assets/images/logo-simona.png" alt"{{ metadata.title }}" /></a></div>
       <ul class="nav">
-        {%- for nav in collections.nav | reverse -%}
+        {%- for nav in collections.topNav | reverse -%}
         <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
         {%- endfor -%}
       </ul>
@@ -40,9 +40,18 @@
     </main>
 
     <footer>
-        <p><em>This is an <a href="https://www.11ty.io/">Eleventy</a> + <a href="https://www.sanity.io">Sanity.io</a> project inspired by the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
+        <nav>
+          <ul>
+            {%- for nav in collections.nav | reverse -%}
+            <li><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+        <p> © {{ helpers.currentYear() }} Simona Prives</p>
     </footer>
-
+    {% if js %}
+    		<script type="module" src="{{ js }}"></script>
+		{% endif %}
     <!-- Current page: {{ page.url | url }} -->
   </body>
 </html>

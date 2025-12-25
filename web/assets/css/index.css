@@ -1,3 +1,17 @@
+:root {
+    --color-gray-20: #e0e0e0;
+    --color-gray-40: #C0C0C0;
+    --color-gray-60: #787878;
+    --color-gray-80: #333;
+  }
+  @media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #333;
+		--color-gray-40: #787878;
+		--color-gray-60: #C0C0C0;
+		--color-gray-80: #e0e0e0;
+  }
+
 /* Declare layer order from lowest to highest precedence */
 @layer reset, defaults, layouts, components, utilities, overrides;
 
@@ -240,51 +254,59 @@
 
 /* Defaults */
 @layer defaults {
-/* Header */
-header {
-	display: flex;
-	gap: 2em;
-	flex-wrap: wrap;
-	/* justify-content: space-between; */
-	align-items: center;
-	padding: 1em 0px;
-}
-.home-link {
-	flex-grow: 1;
-	font-size: 1em; /* 16px /16 */
-	font-weight: 700;
-}
-.home-link:link:not(:hover) {
-	text-decoration: none;
-}
-img.logo {
-  height: 1em;
-  height: 1em;
-  mix-blend-mode: multiply;
-}
+  
+  /* Header */
+  header {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 1em 0px;
+  }
+  .home-link {
+    flex-grow: 1;
+    font-size: 1em; /* 16px /16 */
+    font-weight: 700;
+  }
+  .home-link:link:not(:hover) {
+    text-decoration: none;
+  }
+  img.logo {
+    height: 1em;
+    height: 1em;
+    mix-blend-mode: multiply;
+  }
 
-/* Nav */
-.nav {
-	display: flex;
-	gap: .5em 1em;
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-.nav-item {
-	display: inline-block;
-}
-.nav-item a[href]:not(:hover) {
-	text-decoration: none;
-}
-.nav a[href][aria-current="page"] {
-	text-decoration: underline;
-}
+  /* Nav */
+  .nav {
+    display: flex;
+    gap: .5em 1em;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .nav-item {
+    display: inline-block;
+  }
+  .nav-item a[href]:not(:hover) {
+    text-decoration: none;
+  }
+  .nav a[href][aria-current="page"] {
+    text-decoration: underline;
+  }
+
+  /* footer */
+  footer nav ul {
+    list-style: none;
+  }
 }
 
 @layer layouts {
   article {
-    margin-top: 3rem;
+    margin-block: 3rem;
+    padding-block-end: 3rem;
+    border-bottom: 1px solid var(--color-gray-20);
   }
 
   ul.exhibits-list {
@@ -294,7 +316,7 @@ img.logo {
     gap: 2rem;
   }
   ul.exhibits-list li img {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
   }
   h2.item-title {
@@ -303,4 +325,3 @@ img.logo {
     font-weight: 600;
   }
 }
-
