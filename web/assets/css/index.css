@@ -105,7 +105,7 @@
   video,
   iframe {
     display: block;
-    max-inline-size: 100%;
+    /* max-inline-size: 100%; */
     block-size: auto;
     border-style: none;
   }
@@ -323,5 +323,15 @@
     margin-block: .4em;
     font-size: clamp(.8rem, .8rem + 0.5vw, 2rem);
     font-weight: 600;
+  }
+  section.gallery {
+    display: flex;
+    gap: 2rem;
+    overflow: scroll;
+  }
+  section.gallery figure img {
+    width: auto;
+    height: 80vh;
+    margin-block-end: 1.2rem;
   }
 }

@@ -13,9 +13,9 @@ permalink: on-paper/index.html
 <article>
   <h1>{{ onPaper.title }}</h1>
 
-  {% if onPaper.description %}
+  {# {% if onPaper.description %}
     <p>{{ onPaper.description }}</p>
-  {% endif %}
+  {% endif %} #}
 
   {% if onPaper.images1 %}
     <section class="gallery">
@@ -27,8 +27,8 @@ permalink: on-paper/index.html
             {% if artwork.title or artwork.dimensions or artwork.description %}
               <figcaption>
                 {% if artwork.title %}<strong>{{ artwork.title }}</strong>{% endif %}
-                {% if artwork.dimensions %}<br><em>{{ artwork.dimensions }}</em>{% endif %}
-                {% if artwork.description %}<br>{{ artwork.description }}{% endif %}
+                {% if artwork.dimensions %} | <em>{{ artwork.dimensions }}</em>{% endif %}
+                {% if artwork.description %} | {{ artwork.description }}{% endif %}
               </figcaption>
             {% endif %}
           {% endif %}
