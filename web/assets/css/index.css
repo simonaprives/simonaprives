@@ -11,7 +11,7 @@
 		--color-gray-60: #C0C0C0;
 		--color-gray-80: #e0e0e0;
   }
-
+}
 /* Declare layer order from lowest to highest precedence */
 @layer reset, defaults, layouts, components, utilities, overrides;
 
@@ -308,17 +308,7 @@
     padding-block-end: 3rem;
     border-bottom: 1px solid var(--color-gray-20);
   }
-
-  ul.exhibits-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
-    list-style: none;
-    gap: 2rem;
-  }
-  ul.exhibits-list li img {
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-  }
+  
   h2.item-title {
     margin-block: .4em;
     font-size: clamp(.8rem, .8rem + 0.5vw, 2rem);
@@ -331,7 +321,79 @@
   }
   section.gallery figure img {
     width: auto;
-    height: 80vh;
+    height: 68vh;
     margin-block-end: 1.2rem;
+  }
+
+  /* Carousel */
+  section.carousel {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  anchor-name: --carousel;
+  gap: 1rem;
+
+    > .carousel__slide {
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+      /* inline-size: min(90vw, 1200px); */
+    }
+    
+    > .carousel__slide img {
+      inline-size: auto;
+      block-size: 70vh;
+    }
+  }
+  .carousel--scroll-buttons {
+    &::scroll-button(*) {
+      position: fixed;
+      position-anchor: --carousel;
+      position-visibility: always;
+      font-family: "Material Symbols Outlined";
+    }
+  
+    &::scroll-button(right) {
+      position-area: inline-end center;
+      content: 'arrow_forward' / 'Next';
+    }
+  
+    &::scroll-button(left) {
+      position-area: inline-start center;
+      content: 'arrow_back' / 'Previous';
+    }
+  }
+}
+
+@layer components {
+  /* exhibits grid */
+  ul.exhibits-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  ul.exhibits-grid li {
+    list-style: none;
+  }
+  ul.exhibits-grid li img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
+  /* Match both class names for backward compatibility */
+  ul.exhibits-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
   }
 }

@@ -18,14 +18,14 @@ templateClass: tmpl-exhibit
     {% if exhibit.venue %}<strong>{{ exhibit.venue }}</strong>{% endif %}
     {% if exhibit.venue and exhibit.location %} | {% endif %}
     {% if exhibit.location %}{{ exhibit.location }}{% endif %}
-  {% endif %}
     {% if exhibit.description %} | {{ exhibit.description }} {% endif %}
+    {% if exhibit.photoCredit %} | Photography: {{ exhibit.photoCredit }}{% endif %}
   </p>
 
   {% if exhibit.images %}
-    <section class="gallery">
+    <section class="carousel carousel--scroll-buttons">
       {% for image in exhibit.images %}
-        <figure>
+        <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if image.asset %}
             {% set imageUrl = metadata.imageUrl(image, 1200) %}
             <img src="{{ imageUrl }}" alt="{{ image.alt or exhibit.title }}" {% if loop.first %}style="view-transition-name: exhibit-{{ exhibit.slug }};"{% endif %}>
@@ -36,10 +36,6 @@ templateClass: tmpl-exhibit
         </figure>
       {% endfor %}
     </section>
-  {% endif %}
-
-  {% if exhibit.photoCredit %}
-    <p><em>Photography: {{ exhibit.photoCredit }}</em></p>
   {% endif %}
 
 </article>
