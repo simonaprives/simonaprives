@@ -21,6 +21,7 @@ templateClass: tmpl-exhibit
     {% if exhibit.description %} | {{ exhibit.description }} {% endif %}
     {% if exhibit.photoCredit %} | Photography: {{ exhibit.photoCredit }}{% endif %}
   </p>
+  {% endif %}
 
   {% if exhibit.images %}
     <section class="carousel carousel--scroll-buttons">

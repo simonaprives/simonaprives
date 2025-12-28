@@ -11,10 +11,11 @@ permalink: exhibits/index.html
 <p><a href="{{ '/' | url }}">← Home</a></p>
 
 <article>
-  <h1>Exhibits Test</h1>
+  <h1>Exhibits</h1>
 
   {% if exhibits.length > 0 %}
-    <ul class="exhibits-grid" style="list-style: none;">{% for exhibit in exhibits %}
+    <ul class="exhibits-grid" style="list-style: none;">
+      {% for exhibit in exhibits %}
         <li>
           <div>
             {% if exhibit.previewImageUrl %}
