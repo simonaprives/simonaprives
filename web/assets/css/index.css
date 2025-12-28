@@ -331,6 +331,7 @@
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   anchor-name: --carousel;
   gap: 1rem;
 
