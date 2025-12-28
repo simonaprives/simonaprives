@@ -273,8 +273,7 @@
     text-decoration: none;
   }
   img.logo {
-    height: 1em;
-    height: 1em;
+    height: 1.2em;
     mix-blend-mode: multiply;
   }
 
@@ -351,22 +350,28 @@
       position: fixed;
       position-anchor: --carousel;
       position-visibility: always;
-      font-family: "Material Symbols Outlined";
+      inline-size: 24px;
+      block-size: 24px;
+      background: none;
+      border: none;
+      z-index: 10;
     }
   
     &::scroll-button(right) {
       position-area: inline-end center;
-      content: 'arrow_forward' / 'Next';
+      content: url('/assets/images/icon-arrow-right.svg') / 'Next';
+      left: -100px;
     }
   
     &::scroll-button(left) {
       position-area: inline-start center;
-      content: 'arrow_back' / 'Previous';
+      content: url('/assets/images/icon-arrow-left.svg') / 'Previous';
+      right: -24px;
     }
   }
 }
 
-
+@layer components {
   /* exhibits grid */
   ul.exhibits-grid {
     display: grid !important;
@@ -386,3 +391,14 @@
     max-width: 400px;
     height: auto;
   }
+  
+  /* Social links*/
+  ul.social-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+  }
+  ul.social-links li {
+    align-self: baseline;
+  }
+}
