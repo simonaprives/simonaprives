@@ -118,6 +118,7 @@
   figcaption {
     contain: inline-size;
     font-size: 90%;
+    margin-block-start: 1.2em;
   }
 
   input,
@@ -369,6 +370,11 @@
       content: url('/assets/images/icon-arrow-left.svg') / 'Previous';
       right: -24px;
     }
+  }
+  .video-embed iframe {
+    height: 70vh;
+    width: auto;
+    aspect-ratio: 16 / 9;
   }
 }
 

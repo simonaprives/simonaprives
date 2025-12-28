@@ -18,9 +18,9 @@ permalink: on-paper/index.html
   {% endif %} #}
 
   {% if onPaper.images1 %}
-    <section class="gallery">
+    <section class="carousel carousel--scroll-buttons">
       {% for artwork in onPaper.images1 %}
-        <figure>
+        <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if artwork.mainImage and artwork.mainImage.asset %}
             {% set imageUrl = metadata.imageUrl(artwork.mainImage, 1200) %}
             <img src="{{ imageUrl }}" alt="{{ artwork.title or onPaper.title }}" {% if loop.first %}style="view-transition-name: on-paper-main;"{% endif %}>

@@ -13,14 +13,14 @@ permalink: in-motion/index.html
 <article>
   <h1>{{ inMotion.title }}</h1>
 
-  {% if inMotion.description %}
+  {# {% if inMotion.description %}
     <p>{{ inMotion.description }}</p>
-  {% endif %}
+  {% endif %} #}
 
   {% if inMotion.videos %}
-    <section class="gallery">
+    <section class="carousel carousel--scroll-buttons">
       {% for video in inMotion.videos %}
-        <div class="video-item">
+        <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if video.videoUrl %}
             <div class="video-embed">
               {% set videoId = video.videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
@@ -49,7 +49,7 @@ permalink: in-motion/index.html
           {# {% if video.description %}
             <p>{{ video.description }}</p>
           {% endif %} #}
-        </div>
+          </figure>
       {% endfor %}
     </section>
   {% endif %}
