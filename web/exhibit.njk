@@ -8,7 +8,7 @@ layout: layouts/base.njk
 templateClass: tmpl-exhibit
 ---
 
-<p><a href="{{ '/exhibits/' | url }}">← All Exhibits</a></p>
+<p><a href="{{ '/exhibits/' | url }}">← Exhibits</a></p>
 
 <article>
   <h1>{{ exhibit.title }}</h1>
@@ -37,6 +37,33 @@ templateClass: tmpl-exhibit
         </figure>
       {% endfor %}
     </section>
+  {% endif %}
+
+</article>
+
+<article>
+
+<h2>More Exhibits</h2>
+
+{% if exhibits.length > 0 %}
+    <ul class="exhibits-grid">
+      {% for exhibitItem in exhibits %}
+        {% if exhibitItem.slug != exhibit.slug %}
+        <li>
+          <div>
+            {% if exhibitItem.previewImageUrl %}
+              <a href="/exhibits/{{ exhibitItem.slug }}/">
+                <img src="{{ exhibitItem.previewImageUrl }}" alt="{{ exhibitItem.title }}" style="view-transition-name: exhibit-{{ exhibitItem.slug }};">
+              </a>
+            {% endif %}
+            <h2 class="item-title">
+              <a href="/exhibits/{{ exhibitItem.slug }}/">{{ exhibitItem.title }}</a>
+            </h2>
+          </div>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
   {% endif %}
 
 </article>
