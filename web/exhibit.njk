@@ -24,7 +24,7 @@ templateClass: tmpl-exhibit
   {% endif %}
 
   {% if exhibit.images %}
-    <section class="carousel carousel--scroll-buttons">
+    <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
       {% for image in exhibit.images %}
         <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if image.asset %}
