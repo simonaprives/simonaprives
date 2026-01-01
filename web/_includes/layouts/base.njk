@@ -55,12 +55,16 @@
       <nav class="mobile-menu__nav">
         <ul class="mobile-nav-list mobile-nav-list--primary">
           {%- for nav in collections.topNav | reverse -%}
+          {%- if nav.data.navtitle != 'About' and nav.data.navtitle != 'CV' -%}
           <li><a href="{{ nav.url | url }}"{% if nav.url == page.url %} aria-current="page"{% endif %}>{{ nav.data.navtitle }}</a></li>
+          {%- endif -%}
           {%- endfor -%}
         </ul>
         <ul class="mobile-nav-list mobile-nav-list--secondary">
           {%- for nav in collections.nav | reverse -%}
+          {%- if nav.data.navtitle == 'About' or nav.data.navtitle == 'CV' or nav.data.navtitle == 'Biolinks' -%}
           <li><a href="{{ nav.url | url }}"{% if nav.url == page.url %} aria-current="page"{% endif %}>{{ nav.data.navtitle }}</a></li>
+          {%- endif -%}
           {%- endfor -%}
         </ul>
         {% include "components/social-links.njk" %}

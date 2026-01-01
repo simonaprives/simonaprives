@@ -14,6 +14,16 @@ permalink: about/index.html
   <h1 class="screenreader-only">{{ aboutPage.title }}</h1>
 
   <div class="about-layout">
+
+    {% if aboutPage.mainImageUrl %}
+      <figure class="about-image">
+        <img src="{{ aboutPage.mainImageUrl }}" alt="{{ aboutPage.title }}">
+        {% if aboutPage.mainImageCaption %}
+        <figcaption>{{ aboutPage.mainImageCaption }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endif %}
+
     <div class="about-content">
       {% if aboutPage.deck %}
         <h2 class="deck">{{ aboutPage.deck }}</h2>
@@ -24,14 +34,6 @@ permalink: about/index.html
       {% endif %}
     </div>
 
-    {% if aboutPage.mainImageUrl %}
-      <figure class="about-image">
-        <img src="{{ aboutPage.mainImageUrl }}" alt="{{ aboutPage.title }}">
-        {% if aboutPage.mainImageCaption %}
-        <figcaption>{{ aboutPage.mainImageCaption }}</figcaption>
-        {% endif %}
-      </figure>
-    {% endif %}
   </div>
 
   
