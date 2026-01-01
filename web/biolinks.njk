@@ -7,29 +7,27 @@ navtitle: Biolinks
 permalink: biolinks/index.html
 ---
 
-<p><a href="{{ '/' | url }}">← Home</a></p>
-
-<article>
-  <h1>{{ biolinksPage.title }}</h1>
-
+<div class="biolinks-content">
   {% if biolinksPage.mainImageUrl %}
-    <figure class="hero">
-      <img 
-      style="width: 200px; border-radius: 9999px;"
-      src="{{ biolinksPage.mainImageUrl }}" alt="{{ biolinksPage.title }}">
-    </figure>
+    <img class="biolinks-image" src="{{ biolinksPage.mainImageUrl }}" alt="{{ biolinksPage.title }}">
   {% endif %}
+
+  <h1 class="biolinks-title">{{ biolinksPage.title }}</h1>
 
   {% if biolinksPage.biolinks %}
-    <ul>
+    <div class="biolinks-list">
       {% for link in biolinksPage.biolinks %}
-        <li>
-          <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">
-            {{ link.title }}
-          </a>
-        </li>
+        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="biolinks-card">
+          {{ link.title }}
+        </a>
       {% endfor %}
-    </ul>
+    </div>
   {% endif %}
 
-</article>
+  <div class="biolinks-contact">
+    <p>
+      <span class="biolinks-contact-label">Contact Simona</span>: 
+      <a href="mailto:simona@simonaprives.com" class="biolinks-contact-email">simona@simonaprives.com</a>
+    </p>
+  </div>
+</div>

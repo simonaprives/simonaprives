@@ -706,4 +706,72 @@
   ul.social-links li {
     align-self: baseline;
   }
+
+  /* Biolinks page styles */
+  .biolinks-content {
+    padding-block-start: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    max-width: 874px;
+    margin: 0 auto;
+  }
+
+  .biolinks-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 9999px;
+    object-fit: cover;
+  }
+
+  .biolinks-title {
+    /* font-size: 40px; */
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .biolinks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .biolinks-card {
+    display: block;
+    padding: 16px;
+    border: 1px solid var(--color-gray-40);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease;
+  }
+
+  .biolinks-card:hover {
+    border-color: var(--color-gray-60);
+  }
+
+  .biolinks-contact {
+    padding: 24px 0;
+    width: 100%;
+  }
+
+  .biolinks-contact p {
+    /* text-align: center; */
+    margin: 0;
+  }
+
+  .biolinks-contact-label {
+    font-variant: all-small-caps;
+    color: var(--color-gray-60);
+  }
+
+  .biolinks-contact-email {
+    text-decoration: underline;
+    color: inherit;
+  }
 }
