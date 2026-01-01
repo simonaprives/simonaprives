@@ -28,13 +28,44 @@
   <body>
     <header>
       <div class="home"><a href="{{ '/' | url }}"><img class="logo" src="/assets/images/logo-simona.png" alt"{{ metadata.title }}" /></a></div>
-      <ul class="nav">
-        {%- for nav in collections.topNav | reverse -%}
-        <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
-        {%- endfor -%}
-      </ul>
-      {% include "components/social-links.njk" %}
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-desktop">
+        <ul class="nav">
+          {%- for nav in collections.topNav | reverse -%}
+          <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
+          {%- endfor -%}
+        </ul>
+        {% include "components/social-links.njk" %}
+      </nav>
     </header>
+    
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu__header">
+        <div class="home"><a href="{{ '/' | url }}"><img class="logo" src="/assets/images/logo-simona.png" alt"{{ metadata.title }}" /></a></div>
+        <button class="mobile-menu__close" aria-label="Close menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu__nav">
+        <ul class="mobile-nav-list mobile-nav-list--primary">
+          {%- for nav in collections.topNav | reverse -%}
+          <li><a href="{{ nav.url | url }}"{% if nav.url == page.url %} aria-current="page"{% endif %}>{{ nav.data.navtitle }}</a></li>
+          {%- endfor -%}
+        </ul>
+        <ul class="mobile-nav-list mobile-nav-list--secondary">
+          {%- for nav in collections.nav | reverse -%}
+          <li><a href="{{ nav.url | url }}"{% if nav.url == page.url %} aria-current="page"{% endif %}>{{ nav.data.navtitle }}</a></li>
+          {%- endfor -%}
+        </ul>
+        {% include "components/social-links.njk" %}
+      </nav>
+    </div>
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
       {{ content | safe }}
@@ -50,6 +81,8 @@
         </nav>
         <p> © {{ helpers.currentYear() }} Simona Prives</p>
     </footer>
+    
+    <script src="{{ '/assets/js/mobile-nav.js' | url }}"></script>
     {% if js %}
     		<script type="module" src="{{ js }}"></script>
 		{% endif %}

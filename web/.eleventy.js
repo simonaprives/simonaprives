@@ -41,6 +41,7 @@ module.exports = function(eleventyConfig) {
   // Copy CSS and images to output
   eleventyConfig.addPassthroughCopy("assets/css");
   eleventyConfig.addPassthroughCopy("assets/images");
+  eleventyConfig.addPassthroughCopy("assets/js");
 
   return {
     templateFormats: [
