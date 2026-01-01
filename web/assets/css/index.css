@@ -69,7 +69,7 @@
     margin-top: 1em;
   }
   a {
-    /* color: oklch(0.68 0.17 228); */
+    color: var(--color-gray-60);
     text-underline-offset: 2px;
     &:not(:is(:hover, :focus)) {
       text-decoration-color: color-mix(in srgb, currentColor, transparent 50%);
@@ -441,6 +441,33 @@
   /* Hide footer on homepage */
   .tmpl-home ~ footer {
     display: none;
+  }
+  
+  /* Dark background on homepage */
+  body:has(.tmpl-home) {
+    background-color: var(--color-gray-80);
+    color: var(--color-gray-20);
+  }
+  
+  /* Light text for navigation on homepage */
+  body:has(.tmpl-home) header,
+  body:has(.tmpl-home) header a {
+    color: var(--color-gray-20);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  body:has(.tmpl-home) .logo {
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+  }
+  
+  body:has(.tmpl-home) .mobile-menu-toggle span {
+    background: var(--color-gray-20);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  body:has(.tmpl-home) .social-links svg {
+    fill: var(--color-gray-20);
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
   }
 }
 
