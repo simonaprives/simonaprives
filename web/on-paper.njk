@@ -18,7 +18,7 @@ permalink: on-paper/index.html
   {% endif %} #}
 
   {% if onPaper.images1 %}
-    <section class="carousel carousel--scroll-buttons">
+    <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
       {% for artwork in onPaper.images1 %}
         <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if artwork.mainImage and artwork.mainImage.asset %}

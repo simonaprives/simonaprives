@@ -18,7 +18,7 @@ permalink: in-motion/index.html
   {% endif %} #}
 
   {% if inMotion.videos %}
-    <section class="carousel carousel--scroll-buttons">
+    <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
       {% for video in inMotion.videos %}
         <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if video.videoUrl %}
