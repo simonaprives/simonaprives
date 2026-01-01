@@ -107,7 +107,6 @@
   video,
   iframe {
     display: block;
-    max-inline-size: 100%;
     block-size: auto;
     border-style: none;
   }
@@ -461,6 +460,10 @@
   /* footer */
   footer nav ul {
     list-style: none;
+  }
+
+  footer nav ul li {
+    margin-bottom: .8em;
   }
   
   /* Hide footer on homepage */
