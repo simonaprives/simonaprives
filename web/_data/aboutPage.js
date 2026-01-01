@@ -21,13 +21,15 @@ module.exports = async function() {
   const bio = doc.bio ? BlocksToMarkdown(doc.bio, { serializers, ...client.config() }) : null
 
   let mainImageUrl = null
+  let mainImageCaption = null
   if (doc.mainImage) {
     try {
       mainImageUrl = builder.image(doc.mainImage).width(1200).url()
+      mainImageCaption = doc.mainImage.caption || null
     } catch (err) {
       mainImageUrl = null
     }
   }
 
-  return Object.assign({}, doc, { bio, mainImageUrl })
+  return Object.assign({}, doc, { bio, mainImageUrl, mainImageCaption })
 }

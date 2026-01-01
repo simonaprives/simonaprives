@@ -120,7 +120,8 @@
   figcaption {
     contain: inline-size;
     font-size: 90%;
-    margin-block-start: 1.2em;
+    margin-block-start: 0.6em;
+    font-style: italic;
   }
 
   input,
@@ -490,6 +491,38 @@
     margin-block: 3rem;
     padding-block-end: 3rem;
     border-bottom: 1px solid var(--color-gray-20);
+  }
+  
+  /* About page 2-column layout */
+  .about-layout {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+  }
+  
+  @media (min-width: 768px) {
+    .about-layout {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .about-content {
+      order: 1;
+    }
+    
+    .about-image {
+      order: 2;
+      position: sticky;
+      top: 2rem;
+    }
+  }
+  
+  .about-image {
+    margin: 0;
+  }
+  
+  .about-image img {
+    width: 100%;
+    height: auto;
   }
   
   h2.item-title {
