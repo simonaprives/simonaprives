@@ -515,8 +515,18 @@
 
 @layer layouts {
   /* Hero video */
-  .hero-video {
+  .hero-video-wrapper {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .hero-video-poster {
+    position: absolute;
     top: 50%;
     left: 50%;
     width: 100vw;
@@ -524,7 +534,20 @@
     min-height: 100vh;
     min-width: 177.77vh; /* 16:9 aspect ratio */
     transform: translate(-50%, -50%);
-    z-index: -1;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 aspect ratio */
+    min-height: 100vh;
+    min-width: 177.77vh; /* 16:9 aspect ratio */
+    transform: translate(-50%, -50%);
+    z-index: 2;
     pointer-events: none;
   }
 
