@@ -277,7 +277,7 @@
   }
   img.logo {
     height: 1.2em;
-    mix-blend-mode: multiply;
+    /* mix-blend-mode: multiply; */
   }
 
   /* Nav */
@@ -445,6 +445,20 @@
 }
 
 @layer layouts {
+  /* Hero video */
+  .hero-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 aspect ratio */
+    min-height: 100vh;
+    min-width: 177.77vh; /* 16:9 aspect ratio */
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
   article {
     margin-block: 3rem;
     padding-block-end: 3rem;

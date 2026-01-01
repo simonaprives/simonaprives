@@ -27,7 +27,7 @@
   </head>
   <body>
     <header>
-      <div class="home"><a href="{{ '/' | url }}"><img class="logo" src="/assets/images/logo-simona.png" alt"{{ metadata.title }}" /></a></div>
+      <div class="home"><a href="{{ '/' | url }}"><img class="logo" src="{% if templateClass == 'tmpl-home' %}/assets/images/Logo-white-web.png{% else %}/assets/images/logo-simona.png{% endif %}" alt"{{ metadata.title }}" /></a></div>
       <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span>
         <span></span>
@@ -45,7 +45,7 @@
     
     <div class="mobile-menu" id="mobileMenu">
       <div class="mobile-menu__header">
-        <div class="home"><a href="{{ '/' | url }}"><img class="logo" src="/assets/images/logo-simona.png" alt"{{ metadata.title }}" /></a></div>
+        <div class="home"><a href="{{ '/' | url }}"><img class="logo" src="{% if templateClass == 'tmpl-home' %}/assets/images/Logo-white-web.png{% else %}/assets/images/logo-simona.png{% endif %}" alt"{{ metadata.title }}" /></a></div>
         <button class="mobile-menu__close" aria-label="Close menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
