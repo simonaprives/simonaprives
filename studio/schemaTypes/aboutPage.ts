@@ -35,6 +35,14 @@ export default defineType({
       title: 'Bio',
       type: 'blockContent',
     }),
+    defineField({
+      name: 'contact',
+      title: 'Contact Email',
+      type: 'string',
+      description: 'This email is managed in Site Settings.',
+      readOnly: true,
+      hidden: false,
+    }),
   ],
 
   preview: {

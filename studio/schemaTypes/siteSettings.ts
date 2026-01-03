@@ -25,6 +25,13 @@ export default defineType({
         layout: 'tags'
       },
     }),
+    defineField({
+      name: 'contact',
+      title: 'Contact',
+      type: 'string',
+      description: 'Email shown on the About page (will be linked mailto:).',
+      validation: Rule => Rule.email()
+    }),
   ],
   preview: {
     select: {title: 'title'},
