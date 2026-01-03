@@ -87,6 +87,9 @@
     </footer>
     
     <script src="{{ '/assets/js/mobile-nav.js' | url }}"></script>
+    {% if templateClass == 'tmpl-cv' %}
+    <script src="{{ '/assets/js/cv-tabs.js' | url }}"></script>
+    {% endif %}
     {% if js %}
     		<script type="module" src="{{ js }}"></script>
 		{% endif %}

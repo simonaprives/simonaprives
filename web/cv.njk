@@ -8,71 +8,83 @@ navtitle: CV
 permalink: cv/index.html
 ---
 
-<p><a href="{{ '/' | url }}">← Home</a></p>
+<p><a href="{{ '/' | url }}">← Home</a></p> 
 
 <article>
   <h1>{{ cvPage.title }}</h1>
 
-  {% if cvPage.exhibitions %}
-    <section>
-      <h2>Select Exhibitions</h2>
-      <ul>
-        {% for exhibition in cvPage.exhibitions %}
-          <li>
-            <strong>{{ exhibition.ExhibitionYear }}</strong>
-            {% if exhibition.title %} — {{ exhibition.title }}{% endif %}
-            {% if exhibition.galleryName or exhibition.location %} |
-              {% if exhibition.galleryName %}{{ exhibition.galleryName }}{% endif %}
-              {% if exhibition.location %}{% if exhibition.galleryName %}, {% endif %}{{ exhibition.location }}{% endif %}
-            {% endif %}
-            {% if exhibition.solo %}| <em>Solo</em>{% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
+  <div class="cv-tabs">
+    <div class="cv-tabs__nav" role="tablist">
+      <button class="cv-tabs__tab" role="tab" aria-selected="true" aria-controls="exhibitions-panel" id="exhibitions-tab" data-tab="exhibitions">Select Exhibitions</button>
+      <button class="cv-tabs__tab" role="tab" aria-selected="false" aria-controls="residencies-panel" id="residencies-tab" data-tab="residencies">Residencies</button>
+      <button class="cv-tabs__tab" role="tab" aria-selected="false" aria-controls="teaching-panel" id="teaching-tab" data-tab="teaching">Teaching</button>
+      <button class="cv-tabs__tab" role="tab" aria-selected="false" aria-controls="education-panel" id="education-tab" data-tab="education">Education</button>
+    </div>
 
-  {% if cvPage.residencies %}
-    <section>
-      <h2>Residencies</h2>
-      <ul>
-        {% for residency in cvPage.residencies %}
-          <li>
-            <strong>{{ residency.residencyYear }}</strong>
-            {% if residency.title %} — {{ residency.title }}{% endif %}
-            {% if residency.location %}<br>{{ residency.location }}{% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
+    <div class="cv-tabs__content">
+      {% if cvPage.exhibitions %}
+        <div class="cv-tabs__panel" role="tabpanel" id="exhibitions-panel" aria-labelledby="exhibitions-tab">
+          <div class="cv-list">
+            {% for exhibition in cvPage.exhibitions %}
+              <p class="cv-item">
+                <span class="cv-item__year">{{ exhibition.ExhibitionYear }}</span> | 
+                {% if exhibition.exhibitSlug %}
+                  <a href="/exhibits/{{ exhibition.exhibitSlug }}/" class="cv-item__title"><strong>{{ exhibition.title }}</strong></a>
+                {% else %}
+                  <strong class="cv-item__title">{{ exhibition.title }}</strong>
+                {% endif %}
+                {% if exhibition.solo %} | Solo Exhibit{% endif %}
+                <br>
+                {% if exhibition.galleryName %}{{ exhibition.galleryName }}{% if exhibition.location %}, {% endif %}{% endif %}{% if exhibition.location %}{{ exhibition.location }}{% endif %}
+              </p>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
 
-  {% if cvPage.teaching %}
-    <section>
-      <h2>Teaching</h2>
-      <ul>
-        {% for item in cvPage.teaching %}
-          <li>
-            {% if item.schoolName %}{{ item.schoolName }}{% endif %}
-            {% if item.title %}{% if item.schoolName %} — {% endif %}{{ item.title }}{% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
+      {% if cvPage.residencies %}
+        <div class="cv-tabs__panel" role="tabpanel" id="residencies-panel" aria-labelledby="residencies-tab" hidden>
+          <div class="cv-list">
+            {% for residency in cvPage.residencies %}
+              <p class="cv-item">
+                <span class="cv-item__year">{{ residency.residencyYear }}</span> | 
+                <strong class="cv-item__title">{{ residency.title }}</strong>
+                <br>
+                {{ residency.location }}
+              </p>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
 
-  {% if cvPage.education %}
-    <section>
-      <h2>Education</h2>
-      <ul>
-        {% for item in cvPage.education %}
-          <li>
-            {% if item.schoolName %}{{ item.schoolName }}{% endif %}
-            {% if item.degree %}{% if item.schoolName %} — {% endif %}{{ item.degree }}{% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
+      {% if cvPage.teaching %}
+        <div class="cv-tabs__panel" role="tabpanel" id="teaching-panel" aria-labelledby="teaching-tab" hidden>
+          <div class="cv-list">
+            {% for item in cvPage.teaching %}
+              <p class="cv-item">
+                <strong class="cv-item__title">{{ item.schoolName }}</strong>
+                <br>
+                {{ item.title }}
+              </p>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if cvPage.education %}
+        <div class="cv-tabs__panel" role="tabpanel" id="education-panel" aria-labelledby="education-tab" hidden>
+          <div class="cv-list">
+            {% for item in cvPage.education %}
+              <p class="cv-item">
+                <strong class="cv-item__title">{{ item.schoolName }}</strong>
+                <br>
+                {{ item.degree }}
+              </p>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
 
 </article>

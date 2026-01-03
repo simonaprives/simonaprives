@@ -10,7 +10,8 @@ module.exports = async function() {
       title,
       galleryName,
       location,
-      solo
+      solo,
+      "exhibitSlug": exhibitReference->slug.current
     },
     residencies[]{
       residencyYear,

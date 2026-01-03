@@ -839,4 +839,78 @@
     text-decoration: underline;
     color: inherit;
   }
+
+  /* CV page styles */
+  .cv-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-block-start: 2rem;
+  }
+
+  .cv-tabs__nav {
+    display: flex;
+    gap: 16px;
+    /* border-bottom: 1px solid var(--color-gray-40); */
+    overflow-x: auto;
+    scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+  }
+
+  .cv-tabs__tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 8px 0;
+    font-size: inherit;
+    font-weight: 400;
+    color: var(--color-gray-60);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  .cv-tabs__tab:hover {
+    color: var(--color-gray-80);
+  }
+
+  .cv-tabs__tab[aria-selected="true"] {
+    color: var(--color-gray-80);
+    border-bottom-color: var(--color-gray-80);
+    font-weight: 600;
+  }
+
+  .cv-tabs__content {
+    min-height: 400px;
+  }
+
+  .cv-tabs__panel {
+    display: none;
+  }
+
+  .cv-tabs__panel:not([hidden]) {
+    display: block;
+  }
+
+  .cv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .cv-item {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .cv-item__year {
+    font-weight: 400;
+  }
+
+  .cv-item__title {
+    font-weight: 700;
+  }
 }
