@@ -1,4 +1,5 @@
 :root {
+    --color-white-00: #ffffff;
     --color-gray-20: #e0e0e0;
     --color-gray-40: #C0C0C0;
     --color-gray-60: #787878;
@@ -6,7 +7,8 @@
   }
   @media (prefers-color-scheme: dark) {
 	:root {
-		--color-gray-20: #333;
+		--color-white-00: #000000;
+    --color-gray-20: #333;
 		--color-gray-40: #787878;
 		--color-gray-60: #C0C0C0;
 		--color-gray-80: #e0e0e0;
@@ -18,8 +20,9 @@
 @layer reset {
   html {
     color-scheme: light dark;
-    font:
-      clamp(.8rem, .8rem + 0.5vw, 2rem) / 1.4 system-ui, sans-serif;
+    /* font:clamp(.8rem, .8rem + 0.5vw, 2rem) / 1.4 system-ui, sans-serif; */
+    font-family: system-ui, sans-serif;
+    font-size: clamp(1em, 17px + 0.24vw, 1.125em);
     tab-size: 2;
     hanging-punctuation: first allow-end last;
     word-break: break-word;
@@ -475,6 +478,7 @@
   body:has(.tmpl-home) {
     /* background-color: var(--color-gray-80); */
     background-color: black;
+    background: linear-gradient(to bottom, rgba(51, 51, 51, 0.3) 0%, transparent 70%);
     color: var(--color-gray-20);
   }
   
@@ -482,11 +486,11 @@
   body:has(.tmpl-home) header,
   body:has(.tmpl-home) header a {
     color: var(--color-gray-20);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); */
   }
   
   body:has(.tmpl-home) .logo {
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+    /* filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5)); */
   }
   
   body:has(.tmpl-home) .mobile-menu .logo {
@@ -505,11 +509,13 @@
   
   body:has(.tmpl-home) .social-links svg {
     fill: var(--color-gray-20);
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+    fill: var(--color-white-00);
+    /* filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5)); */
   }
   
   body:has(.tmpl-home) .mobile-menu .social-links svg {
     filter: none;
+
   }
 }
 
@@ -879,7 +885,7 @@
   .cv-tabs__tab[aria-selected="true"] {
     color: var(--color-gray-80);
     border-bottom-color: var(--color-gray-80);
-    font-weight: 600;
+    font-weight: 400;
   }
 
   .cv-tabs__content {
