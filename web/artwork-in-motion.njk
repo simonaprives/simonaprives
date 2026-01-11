@@ -1,0 +1,34 @@
+---
+pagination:
+  data: artworksInMotion
+  size: 1
+  alias: artwork
+permalink: "in-motion/{{ artwork.slug }}/"
+layout: layouts/base.njk
+templateClass: tmpl-artwork
+---
+
+<p><a href="{{ '/in-motion/' | url }}" class="back-link">← In Motion</a></p>
+
+<article>
+  <h1>{{ artwork.title }}</h1>
+
+  {% if artwork.description %}
+    <p>{{ artwork.description }}</p>
+  {% endif %}
+
+  {% if artwork.videoUrl %}
+    <div class="video-embed">
+      {% set videoId = artwork.videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
+      <iframe 
+        src="https://player.vimeo.com/video/{{ videoId }}" 
+        frameborder="0" 
+        allow="fullscreen; picture-in-picture" 
+        allowfullscreen
+      ></iframe>
+    </div>
+  {% elif artwork.mainImage and artwork.mainImage.asset %}
+    {% set imageUrl = metadata.imageUrl(artwork.mainImage, 1200) %}
+    <img src="{{ imageUrl }}" alt="{{ artwork.title }}">
+  {% endif %}
+</article>

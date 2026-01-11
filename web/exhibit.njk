@@ -39,6 +39,16 @@ templateClass: tmpl-exhibit
     </section>
   {% endif %}
 
+  {% if exhibit.relatedArtwork %}
+    {% set relatedArtworkData = artworksInMotion | selectattr('slug', 'equalto', exhibit.relatedArtwork) | first %}
+    {% if relatedArtworkData %}
+    <section>
+      <h2>Related In Motion Artwork</h2>
+      <p><a href="/in-motion/{{ exhibit.relatedArtwork }}/">{{ relatedArtworkData.title }}</a></p>
+    </section>
+    {% endif %}
+  {% endif %}
+
 </article>
 
 <article>

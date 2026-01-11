@@ -13,7 +13,8 @@ module.exports = async function() {
     location,
     photoCredit,
     mainImage,
-    images
+    images,
+    relatedArtwork
   }`
 
   const docs = await client.fetch(query).catch(err => { console.error(err); return [] })
