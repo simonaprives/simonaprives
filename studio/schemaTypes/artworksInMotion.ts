@@ -16,6 +16,7 @@ export default defineType({
           name: 'title',
           title: 'Title',
           type: 'string',
+          validation: (Rule) => Rule.required(),
       }),
       defineField({
           name: 'slug',
@@ -57,7 +58,16 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
+      slug: 'slug',
       media: 'mainImage',
+    },
+    prepare({title = 'Untitled', slug = {}, media}: any) {
+      const path = `/in-motion/${slug?.current || ''}`
+      return {
+        title,
+        subtitle: path,
+        media,
+      }
     },
   },
 })
