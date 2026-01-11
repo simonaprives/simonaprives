@@ -35,7 +35,7 @@
       </button>
       <nav class="nav-desktop">
         <ul class="nav">
-          {%- for nav in collections.topNav | reverse -%}
+          {%- for nav in collections.topNav | sort(attribute="data.navOrder") -%}
           <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
           {%- endfor -%}
         </ul>
@@ -54,14 +54,14 @@
       </div>
       <nav class="mobile-menu__nav">
         <ul class="mobile-nav-list mobile-nav-list--primary">
-          {%- for nav in collections.topNav | reverse -%}
+          {%- for nav in collections.topNav | sort(attribute="data.navOrder") -%}
           {%- if nav.data.navtitle != 'About' and nav.data.navtitle != 'CV' -%}
           <li><a href="{{ nav.url | url }}"{% if nav.url == page.url %} aria-current="page"{% endif %}>{{ nav.data.navtitle }}</a></li>
           {%- endif -%}
           {%- endfor -%}
         </ul>
         <ul class="mobile-nav-list mobile-nav-list--secondary">
-          {%- for nav in collections.nav | reverse -%}
+          {%- for nav in collections.nav | sort(attribute="data.navOrder") -%}
           {%- if nav.data.navtitle == 'About' or nav.data.navtitle == 'CV' or nav.data.navtitle == 'Biolinks' -%}
           <li><a href="{{ nav.url | url }}"{% if nav.url == page.url %} aria-current="page"{% endif %}>{{ nav.data.navtitle }}</a></li>
           {%- endif -%}
