@@ -74,9 +74,9 @@
   a {
     color: var(--color-gray-60);
     text-underline-offset: 2px;
-    &:not(:is(:hover, :focus)) {
+    /* &:not(:is(:hover, :focus)) {
       text-decoration-color: color-mix(in srgb, currentColor, transparent 50%);
-    }
+    } */
   }
 
   sub,
