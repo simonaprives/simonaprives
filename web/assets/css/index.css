@@ -30,9 +30,18 @@
 
   body {
     margin: 0;
-    padding: 2rem;
+    /* padding: 2rem; */
     @media (width < 500px) {
-      padding: 1rem;
+      /* padding: 1rem; */
+      padding: 0px;
+    }
+  }
+
+  main,
+  footer {
+    padding: 0 2rem;
+    @media (width < 500px) {
+      padding: 0 1rem;
     }
   }
 
@@ -268,7 +277,10 @@
     flex-wrap: wrap;
     /* justify-content: space-between; */
     align-items: center;
-    padding: .5em 0px;
+    padding: 2rem;
+    @media (width < 500px) {
+      padding: 1rem 1rem 0px;
+    }
   }
   .home-link {
     flex-grow: 1;
@@ -379,7 +391,7 @@
   .mobile-menu__close {
     background: none;
     border: none;
-    padding: 8px;
+    /* padding: 8px; */
     cursor: pointer;
     color: var(--color-gray-60);
   }
@@ -477,10 +489,12 @@
   /* Dark background on homepage */
   body:has(.tmpl-home) {
     /* background-color: var(--color-gray-80); */
-    background-color: black;
-    background: linear-gradient(to bottom, rgba(51, 51, 51, 0.3) 0%, transparent 70%);
     color: var(--color-gray-20);
   }
+
+  body:has(.tmpl-home) header {
+    background: linear-gradient(to bottom, rgba(51, 51, 51, 0.3) 0%, transparent 100%);
+   }
   
   /* Light text for navigation on homepage */
   body:has(.tmpl-home) header,

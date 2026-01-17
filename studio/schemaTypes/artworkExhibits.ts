@@ -62,8 +62,8 @@ export default defineType({
     }),
     defineField({
       name: 'relatedInMotion',
-      title: 'Related In Motion',
-      description: 'Optional: Link this exhibit to an In Motion piece',
+      title: 'Related In Motion (Optional)',
+      description: 'Link this exhibit to an In Motion piece',
       type: 'reference',
       to: [{type: 'artworksInMotion'}],
       validation: (Rule) => Rule.optional(),
