@@ -5,7 +5,9 @@ const imageUrlBuilder = require('@sanity/image-url')
 const builder = imageUrlBuilder(client)
 
 module.exports = async function() {
-  const query = groq`*[_type == "artworksInMotion"]{
+  const query = groq`*[_type == "artworksInMotion"] | order(orderRank) {
+    title,
+    "slug": slug.current,
     videos[]{
       title,
       "slug": slug.current,

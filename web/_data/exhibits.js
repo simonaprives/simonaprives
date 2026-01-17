@@ -14,7 +14,10 @@ module.exports = async function() {
     photoCredit,
     mainImage,
     images,
-    relatedArtwork
+    relatedInMotion->{
+      title,
+      "slug": slug.current
+    }
   }`
 
   const docs = await client.fetch(query).catch(err => { console.error(err); return [] })

@@ -1,6 +1,6 @@
 ---
 layout: layouts/base.njk
-templateClass: tmpl-in-motion
+templateClass: tmpl-in-motion-list
 tags:
   - nav
   - topNav
@@ -9,49 +9,25 @@ navOrder: 2
 permalink: in-motion/index.html
 ---
 
-<p><a href="{{ '/' | url }}">← Home</a></p>
-
 <article>
-  <h1>{{ inMotion.title }}</h1>
+  <h1>In Motion</h1>
 
-  {# {% if inMotion.description %}
-    <p>{{ inMotion.description }}</p>
-  {% endif %} #}
-
-  {% if inMotion.videos %}
-    <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
-      {% for video in inMotion.videos %}
-        <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
-          {% if video.videoUrl %}
-            <div class="video-embed">
-              {% set videoId = video.videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
-              {% if video.mainImage and video.mainImage.asset %}
-                {% set posterUrl = metadata.imageUrl(video.mainImage, 1200) %}
-              {% else %}
-                {% set posterUrl = "" %}
-              {% endif %}
-              <iframe 
-                src="https://player.vimeo.com/video/{{ videoId }}{% if posterUrl %}??autoplay=0{% endif %}" 
-                frameborder="0" 
-                autoplay=0
-                allow="fullscreen; picture-in-picture" 
-                allowfullscreen
-                {% if loop.first %}style="view-transition-name: in-motion-main;"{% endif %}
-                {% if posterUrl %}data-poster="{{ posterUrl }}"{% endif %}
-              ></iframe>
-            </div>
-          {% elif video.mainImage and video.mainImage.asset %}
-            {% set imageUrl = metadata.imageUrl(video.mainImage, 1200) %}
-            <img src="{{ imageUrl }}" alt="{{ video.title or inMotion.title }}" {% if loop.first %}style="view-transition-name: in-motion-main;"{% endif %}>
-          {% endif %}
-          {% if video.title %}
-            <h2 class="item-title">{{ video.title }}</h2>
-          {% endif %}
-          {# {% if video.description %}
-            <p>{{ video.description }}</p>
-          {% endif %} #}
-          </figure>
+  {% if inMotion.length > 0 %}
+    <ul class="exhibits-grid">
+      {% for item in inMotion %}
+        <li>
+          <div>
+            {% if item.previewImageUrl %}
+              <a href="/in-motion/{{ item.slug }}/">
+                <img src="{{ item.previewImageUrl }}" alt="{{ item.title }}" style="view-transition-name: in-motion-{{ item.slug }};">
+              </a>
+            {% endif %}
+            <h2 class="item-title">
+              <a href="/in-motion/{{ item.slug }}/">{{ item.title }}</a>
+            </h2>
+          </div>
+        </li>
       {% endfor %}
-    </section>
+    </ul>
   {% endif %}
 </article>

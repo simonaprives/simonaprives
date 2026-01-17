@@ -5,30 +5,32 @@ const imageUrlBuilder = require('@sanity/image-url')
 const builder = imageUrlBuilder(client)
 
 module.exports = async function() {
-  const query = groq`*[_type == "artworksInMotion" && _id == "artworksInMotion"][0]{
+  const query = groq`*[_type == "artworksInMotion"] | order(orderRank) {
     title,
     "slug": slug.current,
     description,
     mainImage,
     videos[]{
       title,
+      "slug": slug.current,
       description,
       videoUrl,
       mainImage
     }
   }`
 
-  const doc = await client.fetch(query).catch(err => { console.error(err); return null })
-  if (!doc) return {}
+  const docs = await client.fetch(query).catch(err => { console.error(err); return [] })
 
-  let previewImageUrl = null
-  if (doc.mainImage) {
-    try {
-      previewImageUrl = builder.image(doc.mainImage).width(800).url()
-    } catch (err) {
-      previewImageUrl = null
+  // Add preview image URLs
+  return docs.map(doc => {
+    let previewImageUrl = null
+    if (doc.mainImage) {
+      try {
+        previewImageUrl = builder.image(doc.mainImage).width(800).url()
+      } catch (err) {
+        previewImageUrl = null
+      }
     }
-  }
-
-  return Object.assign({}, doc, { previewImageUrl })
+    return Object.assign({}, doc, { previewImageUrl })
+  })
 }

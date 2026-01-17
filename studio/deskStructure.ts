@@ -39,18 +39,21 @@ export default function deskStructure(S: any, context: any) {
         S,
         context,
       }),
+      // Drag-to-order In Motion using the orderable-document-list plugin
+      orderableDocumentListDeskItem({
+        type: 'artworksInMotion',
+        title: 'In Motion',
+        icon: VideoIcon,
+        // pass S/context from the structure callback
+        S,
+        context,
+      }),
       S.listItem()
         .id('artworkOnPaper')
         .title('On Paper')
         .icon(ImagesIcon)
         .schemaType('artworkOnPaper')
         .child(() => S.document().schemaType('artworkOnPaper').documentId('artworkOnPaper')),
-      S.listItem()
-        .id('artworksInMotion')
-        .title('In motion')
-        .icon(VideoIcon)
-        .schemaType('artworksInMotion')
-        .child(() => S.document().schemaType('artworksInMotion').documentId('artworksInMotion')),
       S.divider(),
       S.listItem()
         .title('Site settings')

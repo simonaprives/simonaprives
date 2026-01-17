@@ -39,9 +39,16 @@ export default function ReadOnlyMainImage() {
     prevRef.current = firstRef
 
     // Patch the document to set mainImage to the first image (or nested mainImage)
+    // Ensure we have both asset and alt text before syncing
+    const altText = first?.alt || first?.asset?.alt || `Image from gallery`
+    const imageToSync = {
+      ...first,
+      alt: altText
+    }
+    
     client
       .patch(id)
-      .set({mainImage: first})
+      .set({mainImage: imageToSync})
       .commit()
       .catch(() => {
         // ignore; syncing is a convenience, not critical

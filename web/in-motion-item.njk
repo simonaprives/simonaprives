@@ -1,0 +1,74 @@
+---
+pagination:
+  data: inMotion
+  size: 1
+  alias: motion
+permalink: "in-motion/{{ motion.slug }}/"
+layout: layouts/base.njk
+templateClass: tmpl-in-motion-item
+---
+
+<p><a href="{{ '/in-motion/' | url }}" class="back-link">← In Motion</a></p>
+
+<article>
+  <h1>{{ motion.title }}</h1>
+
+  {% if motion.description %}
+    <p>{{ motion.description }}</p>
+  {% endif %}
+
+  {% if motion.videos %}
+    <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
+      {% for video in motion.videos %}
+        <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
+          {% if video.videoUrl %}
+            <div class="video-embed">
+              {% set videoId = video.videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
+              <iframe 
+                src="https://player.vimeo.com/video/{{ videoId }}" 
+                frameborder="0" 
+                allow="fullscreen; picture-in-picture" 
+                allowfullscreen
+                {% if loop.first %}style="view-transition-name: in-motion-{{ motion.slug }};"{% endif %}
+              ></iframe>
+            </div>
+          {% elif video.mainImage and video.mainImage.asset %}
+            {% set imageUrl = metadata.imageUrl(video.mainImage, 1200) %}
+            <img src="{{ imageUrl }}" alt="{{ video.title or motion.title }}" {% if loop.first %}style="view-transition-name: in-motion-{{ motion.slug }};"{% endif %}>
+          {% endif %}
+          {% if video.title %}
+            <figcaption><strong>{{ video.title }}</strong></figcaption>
+          {% endif %}
+          {% if video.description %}
+            <figcaption>{{ video.description }}</figcaption>
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </section>
+  {% endif %}
+</article>
+
+<article>
+  <h2>More In Motion</h2>
+
+  {% if inMotion.length > 0 %}
+    <ul class="exhibits-grid">
+      {% for item in inMotion %}
+        {% if item.slug != motion.slug %}
+        <li>
+          <div>
+            {% if item.previewImageUrl %}
+              <a href="/in-motion/{{ item.slug }}/">
+                <img src="{{ item.previewImageUrl }}" alt="{{ item.title }}" style="view-transition-name: in-motion-{{ item.slug }};">
+              </a>
+            {% endif %}
+            <h2 class="item-title">
+              <a href="/in-motion/{{ item.slug }}/">{{ item.title }}</a>
+            </h2>
+          </div>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</article>

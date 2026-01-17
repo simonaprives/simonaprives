@@ -61,6 +61,14 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'relatedInMotion',
+      title: 'Related In Motion',
+      description: 'Optional: Link this exhibit to an In Motion piece',
+      type: 'reference',
+      to: [{type: 'artworksInMotion'}],
+      validation: (Rule) => Rule.optional(),
+    }),
+    defineField({
       name: 'images',
       title: 'Gallery',
       group: 'gallery',
