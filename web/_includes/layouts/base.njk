@@ -90,7 +90,7 @@
     {% if templateClass == 'tmpl-cv' %}
     <script src="{{ '/assets/js/cv-tabs.js' | url }}"></script>
     {% endif %}
-    {% if templateClass == 'tmpl-exhibit' %}
+    {% if templateClass == 'tmpl-exhibit' or templateClass == 'tmpl-in-motion-item' %}
     <script src="{{ '/assets/js/back-navigation.js' | url }}"></script>
     {% endif %}
     {% if js %}
