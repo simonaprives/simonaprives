@@ -19,4 +19,11 @@ const config = {
 }
 */
 
-module.exports = sanityClient({...api, useCdn: true});
+const previewMode = process.env.ELEVENTY_ENV === 'preview'
+
+module.exports = sanityClient({
+  ...api, 
+  useCdn: !previewMode,
+  perspective: previewMode ? 'previewDrafts' : 'published',
+  token: previewMode ? process.env.SANITY_READ_TOKEN : undefined,
+});

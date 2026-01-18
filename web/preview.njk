@@ -1,0 +1,42 @@
+---
+permalink: /preview/
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Preview Mode</title>
+  <script>
+    // This page enables preview mode and redirects to the requested URL
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+      const type = params.get('type');
+      
+      // Map document types to URLs
+      let url = '/';
+      
+      if (type === 'homePage') {
+        url = '/';
+      } else if (type === 'aboutPage') {
+        url = '/about/';
+      } else if (type === 'cv') {
+        url = '/cv/';
+      } else if (type === 'biolinks') {
+        url = '/biolinks/';
+      } else if (type === 'artworkExhibits' && slug) {
+        url = `/exhibits/${slug}/`;
+      } else if (type === 'artworksInMotion' && slug) {
+        url = `/in-motion/${slug}/`;
+      }
+      
+      // Redirect to the target URL with preview flag
+      window.location.href = url + '?preview=true';
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to preview...</p>
+</body>
+</html>
