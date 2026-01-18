@@ -1,5 +1,6 @@
 _site/
 node_modules/
 posts/*.md
+.env
 # package-lock.json
 # We commit lockfiles to ensure CI (Netlify) installs the exact same dependency tree.
