@@ -96,6 +96,27 @@
     {% if js %}
     		<script type="module" src="{{ js }}"></script>
 		{% endif %}
+    
+    {# Enable Sanity Presentation Tool when in preview mode #}
+    {% if helpers.isPreview %}
+    <script type="module">
+      import {enableOverlays} from 'https://esm.sh/@sanity/overlays@2.4'
+      
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          enableOverlays({
+            zIndex: 999999
+          })
+        })
+      } else {
+        enableOverlays({
+          zIndex: 999999
+        })
+      }
+    </script>
+    {% endif %}
+    
     <!-- Current page: {{ page.url | url }} -->
   </body>
 </html>

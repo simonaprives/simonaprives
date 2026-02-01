@@ -40,72 +40,74 @@ export default defineConfig({
           enable: '/preview',
         },
       },
-      locate(params, context) {
-        // Map URLs to documents for the "Documents on this page" panel
-        if (params.documentType === 'homePage') {
-          return {
-            locations: [{
-              title: 'Home Page',
-              href: '/',
-            }],
+      resolve: {
+        locations: (params, context) => {
+          // Map URLs to documents for the "Documents on this page" panel
+          if (params.documentType === 'homePage') {
+            return {
+              locations: [{
+                title: 'Home Page',
+                href: '/',
+              }],
+            }
           }
-        }
-        
-        if (params.documentType === 'aboutPage') {
-          return {
-            locations: [{
-              title: 'About Page',
-              href: '/about',
-            }],
+          
+          if (params.documentType === 'aboutPage') {
+            return {
+              locations: [{
+                title: 'About Page',
+                href: '/about',
+              }],
+            }
           }
-        }
-        
-        if (params.documentType === 'biolinks') {
-          return {
-            locations: [{
-              title: 'Biolinks Page',
-              href: '/biolinks',
-            }],
+          
+          if (params.documentType === 'biolinks') {
+            return {
+              locations: [{
+                title: 'Biolinks Page',
+                href: '/biolinks',
+              }],
+            }
           }
-        }
-        
-        if (params.documentType === 'cv') {
-          return {
-            locations: [{
-              title: 'CV Page',
-              href: '/cv',
-            }],
+          
+          if (params.documentType === 'cv') {
+            return {
+              locations: [{
+                title: 'CV Page',
+                href: '/cv',
+              }],
+            }
           }
-        }
-        
-        if (params.documentType === 'artworkExhibits' && params.document?.slug?.current) {
-          return {
-            locations: [{
-              title: params.document.title || 'Exhibit',
-              href: `/exhibits/${params.document.slug.current}`,
-            }],
+          
+          if (params.documentType === 'artworkExhibits' && params.document?.slug?.current) {
+            return {
+              locations: [{
+                title: params.document.title || 'Exhibit',
+                href: `/exhibits/${params.document.slug.current}`,
+              }],
+            }
           }
-        }
-        
-        if (params.documentType === 'artworksInMotion' && params.document?.slug?.current) {
-          return {
-            locations: [{
-              title: params.document.title || 'In Motion',
-              href: `/in-motion/${params.document.slug.current}`,
-            }],
+          
+          if (params.documentType === 'artworksInMotion' && params.document?.slug?.current) {
+            return {
+              locations: [{
+                title: params.document.title || 'In Motion',
+                href: `/in-motion/${params.document.slug.current}`,
+              }],
+            }
           }
-        }
-        
-        if (params.documentType === 'post' && params.document?.slug?.current) {
-          return {
-            locations: [{
-              title: params.document.title || 'Post',
-              href: `/posts/${params.document.slug.current}`,
-            }],
+          
+          if (params.documentType === 'post' && params.document?.slug?.current) {
+            return {
+              locations: [{
+                title: params.document.title || 'Post',
+                href: `/posts/${params.document.slug.current}`,
+              }],
+            }
           }
-        }
-        
-        return null
+          
+          return null
+        },
       },
     }),
   ],
