@@ -9,32 +9,31 @@ navOrder: 2
 permalink: in-motion/index.html
 ---
 
+<p><a href="{{ '/' | url }}">← Home</a></p>
+
 <article>
   <h1>In Motion</h1>
 
   {% if inMotion.length > 0 %}
     <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
       {% for item in inMotion %}
-        {% if item.videos %}
-          {% for video in item.videos %}
-            <figure class="carousel__slide" data-label="{{ item.title }}">
-              {% if video.videoUrl %}
-                <div class="video-embed">
-                  {% set videoId = video.videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
-                  <iframe 
-                    src="https://player.vimeo.com/video/{{ videoId }}" 
-                    frameborder="0" 
-                    allow="fullscreen; picture-in-picture" 
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                <figcaption>
-                  <a href="/in-motion/{{ item.slug }}/">{{ item.title }}</a>
-                </figcaption>
-              {% endif %}
-            </figure>
-          {% endfor %}
-        {% endif %}
+        <figure class="carousel__slide" data-label="{{ item.title }}">
+          {% if item.videos[0] and item.videos[0].videoUrl %}
+            <div class="video-embed">
+              {% set videoId = item.videos[0].videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
+              <iframe 
+                src="https://player.vimeo.com/video/{{ videoId }}" 
+                frameborder="0" 
+                allow="fullscreen; picture-in-picture" 
+                allowfullscreen
+                style="view-transition-name: in-motion-{{ item.slug }};"
+              ></iframe>
+            </div>
+          {% endif %}
+          <figcaption>
+            <a href="/in-motion/{{ item.slug }}/">{{ item.title }}</a>
+          </figcaption>
+        </figure>
       {% endfor %}
     </section>
     </article>

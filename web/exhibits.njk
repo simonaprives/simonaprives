@@ -17,19 +17,18 @@ permalink: exhibits/index.html
   {% if exhibits.length > 0 %}
     <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
       {% for exhibit in exhibits %}
-        {% if exhibit.images %}
-          {% for image in exhibit.images %}
-            <figure class="carousel__slide" data-label="{{ exhibit.title }}">
-              {% if image.asset %}
-                {% set imageUrl = metadata.imageUrl(image, 1200) %}
-                <img src="{{ imageUrl }}" alt="{{ image.alt or exhibit.title }}">
-                <figcaption>
-                  <a href="/exhibits/{{ exhibit.slug }}/">{{ exhibit.title }}</a>
-                </figcaption>
-              {% endif %}
-            </figure>
-          {% endfor %}
-        {% endif %}
+        <figure class="carousel__slide" data-label="{{ exhibit.title }}">
+          {% if exhibit.images[0] and exhibit.images[0].asset %}
+            {% set imageUrl = metadata.imageUrl(exhibit.images[0], 1200) %}
+            <img src="{{ imageUrl }}" alt="{{ exhibit.images[0].alt or exhibit.title }}" style="view-transition-name: exhibit-{{ exhibit.slug }};">
+          {% elif exhibit.mainImage and exhibit.mainImage.asset %}
+            {% set imageUrl = metadata.imageUrl(exhibit.mainImage, 1200) %}
+            <img src="{{ imageUrl }}" alt="{{ exhibit.title }}" style="view-transition-name: exhibit-{{ exhibit.slug }};">
+          {% endif %}
+          <figcaption>
+            <a href="/exhibits/{{ exhibit.slug }}/">{{ exhibit.title }}</a>
+          </figcaption>
+        </figure>
       {% endfor %}
     </section>
   {% endif %}

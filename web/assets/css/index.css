@@ -21,7 +21,7 @@
   html {
     color-scheme: light dark;
     /* font:clamp(.8rem, .8rem + 0.5vw, 2rem) / 1.4 system-ui, sans-serif; */
-    font-family: system-ui, sans-serif;
+    font-family: roboto, system-ui, sans-serif;
     font-size: clamp(1em, 17px + 0.24vw, 1.125em);
     tab-size: 2;
     hanging-punctuation: first allow-end last;
@@ -301,7 +301,7 @@
     display: flex;
     gap: .5em 1em;
     padding: 0;
-    margin: 0;
+    margin: 0 24px 0 0;
     list-style: none;
   }
   .nav {
