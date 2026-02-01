@@ -13,21 +13,49 @@ permalink: in-motion/index.html
   <h1>In Motion</h1>
 
   {% if inMotion.length > 0 %}
-    <ul class="exhibits-grid">
+    <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
       {% for item in inMotion %}
-        <li>
-          <div>
-            {% if item.previewImageUrl %}
-              <a href="/in-motion/{{ item.slug }}/">
-                <img src="{{ item.previewImageUrl }}" alt="{{ item.title }}" style="view-transition-name: in-motion-{{ item.slug }};">
-              </a>
-            {% endif %}
-            <h2 class="item-title">
-              <a href="/in-motion/{{ item.slug }}/">{{ item.title }}</a>
-            </h2>
-          </div>
-        </li>
+        {% if item.videos %}
+          {% for video in item.videos %}
+            <figure class="carousel__slide" data-label="{{ item.title }}">
+              {% if video.videoUrl %}
+                <div class="video-embed">
+                  {% set videoId = video.videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
+                  <iframe 
+                    src="https://player.vimeo.com/video/{{ videoId }}" 
+                    frameborder="0" 
+                    allow="fullscreen; picture-in-picture" 
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <figcaption>
+                  <a href="/in-motion/{{ item.slug }}/">{{ item.title }}</a>
+                </figcaption>
+              {% endif %}
+            </figure>
+          {% endfor %}
+        {% endif %}
       {% endfor %}
-    </ul>
+    </section>
+    </article>
+    <article>
+      <h2>All Works In Motion</h2>
+      <ul class="exhibits-grid">
+        {% for item in inMotion %}
+          <li>
+            <div>
+              {% if item.previewImageUrl %}
+                <a href="/in-motion/{{ item.slug }}/">
+                  <img src="{{ item.previewImageUrl }}" alt="{{ item.title }}" style="view-transition-name: in-motion-{{ item.slug }};">
+                </a>
+              {% endif %}
+              <h2 class="item-title">
+                <a href="/in-motion/{{ item.slug }}/">{{ item.title }}</a>
+              </h2>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
   {% endif %}
-</article>
+  </article>
+
