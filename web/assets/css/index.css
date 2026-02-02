@@ -45,6 +45,14 @@
     }
   }
 
+  footer {
+    padding-block-end: 4rem;
+  }
+
+  footer nav {
+    margin-block-end: 2rem;
+  }
+
   *,
   *::before,
   *::after {
@@ -485,8 +493,18 @@
   
   /* Dark background on homepage */
   body:has(.tmpl-home) {
-    /* background-color: var(--color-gray-80); */
-    color: var(--color-gray-20);
+    /* background-color: #333; */
+    color: #e0e0e0;
+  }
+
+  body:has(.tmpl-home) article.homepage-content,
+  body:has(.tmpl-home) footer {
+    color: var(--color-gray-80);
+  }
+
+  body:has(.tmpl-home) article.homepage-content {
+    margin-block-start: 0px;
+    margin-block-end: 3rem;
   }
 
   body:has(.tmpl-home) header {
@@ -496,7 +514,7 @@
   /* Light text for navigation on homepage */
   body:has(.tmpl-home) header,
   body:has(.tmpl-home) header a {
-    color: var(--color-gray-20);
+    color: #e0e0e0;
     /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); */
   }
   
@@ -572,6 +590,10 @@
     margin-block: 3rem;
     padding-block-end: 3rem;
     border-bottom: 1px solid var(--color-gray-20);
+  }
+
+  article.homepage-content {
+    margin-block-start: 0px;
   }
   
   /* About page 2-column layout */
