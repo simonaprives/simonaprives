@@ -18,3 +18,24 @@ layout: layouts/home.njk
     ></iframe>
   {% endif %}
 </div>
+
+<article class="home-content">
+  <h2>Exhibitions</h2>
+  {% if exhibits.length > 0 %}
+    <ul class="exhibits-grid">
+      {% for exhibit in exhibits %}
+        <li>
+          <div>
+            {% if exhibit.previewImageUrl %}
+              <a href="/exhibits/{{ exhibit.slug }}/">
+                <img src="{{ exhibit.previewImageUrl }}" alt="{{ exhibit.title }}" style="view-transition-name: exhibit-{{ exhibit.slug }};">
+              </a>
+            {% endif %}
+            <h2 class="item-title">
+              <a href="/exhibits/{{ exhibit.slug }}/">{{ exhibit.title }}</a>
+            </h2>
+          </div>
+        </li>{% endfor %}
+    </ul>
+  {% endif %}
+</article>

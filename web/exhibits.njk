@@ -49,16 +49,6 @@ permalink: exhibits/index.html
             <h2 class="item-title">
               <a href="/exhibits/{{ exhibit.slug }}/">{{ exhibit.title }}</a>
             </h2>
-            {# {% if exhibit.venue or exhibit.location %}
-              <p>
-                {% if exhibit.venue %}{{ exhibit.venue }}{% endif %}
-                {% if exhibit.venue and exhibit.location %} | {% endif %}
-                {% if exhibit.location %}{{ exhibit.location }}{% endif %}
-              </p>
-            {% endif %}
-            {% if exhibit.description %}
-              <p>{{ exhibit.description }}</p>
-            {% endif %} #}
           </div>
         </li>{% endfor %}
     </ul>

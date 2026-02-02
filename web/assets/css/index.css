@@ -272,6 +272,8 @@
   
   /* Header */
   header {
+    position: relative;
+    z-index: 10;
     display: flex;
     gap: 2em;
     flex-wrap: wrap;
@@ -481,11 +483,6 @@
     margin-bottom: .8em;
   }
   
-  /* Hide footer on homepage */
-  .tmpl-home ~ footer {
-    display: none;
-  }
-  
   /* Dark background on homepage */
   body:has(.tmpl-home) {
     /* background-color: var(--color-gray-80); */
@@ -536,7 +533,7 @@
 @layer layouts {
   /* Hero video */
   .hero-video-wrapper {
-    position: fixed;
+    /* position: relative; */
     top: 0;
     left: 0;
     width: 100vw;
