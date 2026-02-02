@@ -7,6 +7,7 @@ import {media} from 'sanity-plugin-media'
 import { DiamondIcon } from '@sanity/icons'
 import {dashboardTool, projectInfoWidget, projectUsersWidget} from '@sanity/dashboard'
 import {netlifyWidget} from 'sanity-plugin-dashboard-widget-netlify'
+import {documentListWidget} from 'sanity-plugin-dashboard-widget-document-list'
 
 export default defineConfig({
   name: 'default',
@@ -29,7 +30,13 @@ export default defineConfig({
             }
           ]
         }),
-        projectInfoWidget(),
+        documentListWidget({
+          title: 'Recently Edited',
+          order: '_updatedAt desc',
+          limit: 10,
+          types: ['homePage', 'aboutPage', 'cv', 'biolinks', 'artworkExhibits', 'artworksInMotion', 'artworkOnPaper', 'siteSettings', 'post'],
+        }),
+        // projectInfoWidget(),
         projectUsersWidget(),
       ]
     }),
