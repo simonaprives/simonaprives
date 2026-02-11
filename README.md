@@ -6,6 +6,13 @@ Minimal blog with [Eleventy](https://11ty.io) and [Sanity](https://www.sanity.io
 
 This is a monorepo with a pre-configured Sanity Studio (`/studio`) and a very basic setup of Eleventy (`/web`).
 
+- [Quick start](#quick-start)
+- [Deploy on Netlify](#deploy-on-netlify)
+  - [Studio](#studio)
+  - [Web](#web)
+- [Deploy on `now`](#deploy-on-now)
+- [CORS-settings for the Studio](#cors-settings-for-the-studio)
+
 ## Remaining work (prioritized)
 
 Top priority (core UX + stability)
@@ -23,13 +30,6 @@ Lower priority (nice-to-have)
 - Light/dark toggle (only after colors and contrast are final).
 - SEO polish (metadata, OG images, sitemap, canonicals).
 - Content QA (typos, consistency, missing images).
-
-- [Quick start](#quick-start)
-- [Deploy on Netlify](#deploy-on-netlify)
-  - [Studio](#studio)
-  - [Web](#web)
-- [Deploy on `now`](#deploy-on-now)
-- [CORS-settings for the Studio](#cors-settings-for-the-studio)
 
 ## Quick start
 
