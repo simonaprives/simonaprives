@@ -6,6 +6,24 @@ Minimal blog with [Eleventy](https://11ty.io) and [Sanity](https://www.sanity.io
 
 This is a monorepo with a pre-configured Sanity Studio (`/studio`) and a very basic setup of Eleventy (`/web`).
 
+## Remaining work (prioritized)
+
+Top priority (core UX + stability)
+- Fix routing bugs (broken links, 404s, permalinks, pagination paths).
+- Migrate all site content (blockers for launch).
+- Resolve onPaper content strategy (clear taxonomy, fields, and display rules).
+- Fix gallery grids (layout consistency, responsive behavior).
+
+Next priority (performance + accessibility)
+- Image optimization (sizes, responsive srcsets, formats).
+- Custom fonts (self-host, preload, fallback stacks).
+- Accessibility pass (headings, alt text, keyboard nav, color contrast).
+
+Lower priority (nice-to-have)
+- Light/dark toggle (only after colors and contrast are final).
+- SEO polish (metadata, OG images, sitemap, canonicals).
+- Content QA (typos, consistency, missing images).
+
 - [Quick start](#quick-start)
 - [Deploy on Netlify](#deploy-on-netlify)
   - [Studio](#studio)
