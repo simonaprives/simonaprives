@@ -17,36 +17,36 @@ templateClass: tmpl-in-motion-item
     <p>{{ motion.description }}</p>
   {% endif %}
 
-  {% if motion.videos %}
+  {% if motion.videos or motion.previewImageUrl %}
     <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
-      {% set vt = namespace(named=false) %}
-      {# Destination morph target: preview matches list thumbs when carousel is video-only #}
       {% if motion.previewImageUrl %}
-        <figure class="carousel__slide vt-destination" data-label="{{ motion.title }}">
-          <img class="vt-thumb" src="{{ motion.previewImageUrl }}" alt="{{ motion.title }}" data-vt-name="in-motion-{{ motion.slug }}" style="view-transition-name: in-motion-{{ motion.slug }};">
+        <figure class="carousel__slide" data-label="{{ motion.title }}">
+          <img
+            class="vt-thumb vt-thumb--hero"
+            src="{{ motion.previewImageUrl }}"
+            alt="{{ motion.title }}"
+            data-vt-name="in-motion-{{ motion.slug }}"
+            style="view-transition-name: in-motion-{{ motion.slug }};"
+            width="800"
+            height="450"
+          >
         </figure>
-        {% set vt.named = true %}
       {% endif %}
       {% for video in motion.videos %}
         <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if video.videoUrl %}
             <div class="video-embed">
               {% set videoId = video.videoUrl | replace("https://vimeo.com/", "") | replace("https://player.vimeo.com/video/", "") %}
-              <iframe 
-                src="https://player.vimeo.com/video/{{ videoId }}" 
-                frameborder="0" 
-                allow="fullscreen; picture-in-picture" 
+              <iframe
+                src="https://player.vimeo.com/video/{{ videoId }}"
+                frameborder="0"
+                allow="fullscreen; picture-in-picture"
                 allowfullscreen
               ></iframe>
             </div>
           {% elif video.mainImage and video.mainImage.asset %}
             {% set imageUrl = metadata.imageUrl(video.mainImage, 1200) %}
-            {% if not vt.named %}
-              <img class="vt-thumb" data-vt-name="in-motion-{{ motion.slug }}" style="view-transition-name: in-motion-{{ motion.slug }};" src="{{ imageUrl }}" alt="{{ video.title or motion.title }}">
-              {% set vt.named = true %}
-            {% else %}
-              <img src="{{ imageUrl }}" alt="{{ video.title or motion.title }}">
-            {% endif %}
+            <img src="{{ imageUrl }}" alt="{{ video.title or motion.title }}">
           {% endif %}
           {% if video.title %}
             <figcaption><strong>{{ video.title }}</strong></figcaption>
