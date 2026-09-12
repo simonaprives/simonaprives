@@ -262,16 +262,43 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    @view-transition {
-      navigation: auto;
-    }
-    
     html {
       interpolate-size: allow-keywords;
       &:focus-within {
         scroll-behavior: smooth;
       }
     }
+  }
+}
+
+/* View Transitions (MPA) — unlayered for reliable at-rule / pseudo handling */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition {
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  header {
+    view-transition-name: site-header;
+  }
+
+  ::view-transition-group(site-header),
+  ::view-transition-old(site-header),
+  ::view-transition-new(site-header) {
+    animation: none;
+    z-index: 1100;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }
 

@@ -24,18 +24,35 @@ templateClass: tmpl-exhibit
   </p>
   {% endif %}
 
-  {% if exhibit.images %}
+  {% if exhibit.images or exhibit.previewImageUrl %}
     <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
+      {# Same asset+URL as list/home thumbs so the morph doesn't crossfade different crops #}
+      {% if exhibit.previewImageUrl %}
+        <figure class="carousel__slide" data-label="{{ exhibit.title }}">
+          <img
+            class="vt-thumb vt-thumb--hero"
+            src="{{ exhibit.previewImageUrl }}"
+            alt="{{ exhibit.title }}"
+            data-vt-name="exhibit-{{ exhibit.slug }}"
+            style="view-transition-name: exhibit-{{ exhibit.slug }};"
+            width="800"
+            height="450"
+          >
+        </figure>
+      {% endif %}
       {% for image in exhibit.images %}
-        <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
-          {% if image.asset %}
-            {% set imageUrl = metadata.imageUrl(image, 1200) %}
-            <img src="{{ imageUrl }}" alt="{{ image.alt or exhibit.title }}" {% if loop.first %}style="view-transition-name: exhibit-{{ exhibit.slug }};"{% endif %}>
+        {% set skipMain = exhibit.mainImage and image.asset and exhibit.mainImage.asset and image.asset._ref == exhibit.mainImage.asset._ref %}
+        {% if image.asset and not skipMain %}
+          {% set imageUrl = metadata.imageUrl(image, 1200) %}
+          <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
+            <img src="{{ imageUrl }}" alt="{{ image.alt or exhibit.title }}">
             {% if image.caption %}
               <figcaption>{{ image.caption }}</figcaption>
             {% endif %}
-          {% endif %}
-        </figure>
+          </figure>
+        {% elif image.asset and skipMain and image.caption and exhibit.previewImageUrl %}
+          {# Caption for main image lives on the hero slide above; skip duplicate frame #}
+        {% endif %}
       {% endfor %}
     </section>
   {% endif %}
@@ -54,7 +71,7 @@ templateClass: tmpl-exhibit
           <div>
             {% if exhibitItem.previewImageUrl %}
               <a href="/exhibits/{{ exhibitItem.slug }}/">
-                <img src="{{ exhibitItem.previewImageUrl }}" alt="{{ exhibitItem.title }}" style="view-transition-name: exhibit-{{ exhibitItem.slug }};">
+                <img class="vt-thumb" src="{{ exhibitItem.previewImageUrl }}" alt="{{ exhibitItem.title }}" data-vt-name="exhibit-{{ exhibitItem.slug }}" style="view-transition-name: exhibit-{{ exhibitItem.slug }};" width="800" height="450">
               </a>
             {% endif %}
             <h2 class="item-title">

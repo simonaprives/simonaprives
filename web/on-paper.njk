@@ -24,7 +24,7 @@ permalink: on-paper/index.html
         <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if artwork.mainImage and artwork.mainImage.asset %}
             {% set imageUrl = metadata.imageUrl(artwork.mainImage, 1200) %}
-            <img src="{{ imageUrl }}" alt="{{ artwork.title or onPaper.title }}" {% if loop.first %}style="view-transition-name: on-paper-main;"{% endif %}>
+            <img src="{{ imageUrl }}" alt="{{ artwork.title or onPaper.title }}">
             {% if artwork.title or artwork.dimensions or artwork.description %}
               <figcaption>
                 {% if artwork.title %}<strong>{{ artwork.title }}</strong>{% endif %}

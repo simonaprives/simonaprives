@@ -19,6 +19,14 @@ templateClass: tmpl-in-motion-item
 
   {% if motion.videos %}
     <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
+      {% set vt = namespace(named=false) %}
+      {# Destination morph target: preview matches list thumbs when carousel is video-only #}
+      {% if motion.previewImageUrl %}
+        <figure class="carousel__slide vt-destination" data-label="{{ motion.title }}">
+          <img class="vt-thumb" src="{{ motion.previewImageUrl }}" alt="{{ motion.title }}" data-vt-name="in-motion-{{ motion.slug }}" style="view-transition-name: in-motion-{{ motion.slug }};">
+        </figure>
+        {% set vt.named = true %}
+      {% endif %}
       {% for video in motion.videos %}
         <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
           {% if video.videoUrl %}
@@ -29,12 +37,16 @@ templateClass: tmpl-in-motion-item
                 frameborder="0" 
                 allow="fullscreen; picture-in-picture" 
                 allowfullscreen
-                {% if loop.first %}style="view-transition-name: in-motion-{{ motion.slug }};"{% endif %}
               ></iframe>
             </div>
           {% elif video.mainImage and video.mainImage.asset %}
             {% set imageUrl = metadata.imageUrl(video.mainImage, 1200) %}
-            <img src="{{ imageUrl }}" alt="{{ video.title or motion.title }}" {% if loop.first %}style="view-transition-name: in-motion-{{ motion.slug }};"{% endif %}>
+            {% if not vt.named %}
+              <img class="vt-thumb" data-vt-name="in-motion-{{ motion.slug }}" style="view-transition-name: in-motion-{{ motion.slug }};" src="{{ imageUrl }}" alt="{{ video.title or motion.title }}">
+              {% set vt.named = true %}
+            {% else %}
+              <img src="{{ imageUrl }}" alt="{{ video.title or motion.title }}">
+            {% endif %}
           {% endif %}
           {% if video.title %}
             <figcaption><strong>{{ video.title }}</strong></figcaption>
@@ -59,7 +71,7 @@ templateClass: tmpl-in-motion-item
           <div>
             {% if item.previewImageUrl %}
               <a href="/in-motion/{{ item.slug }}/">
-                <img src="{{ item.previewImageUrl }}" alt="{{ item.title }}" style="view-transition-name: in-motion-{{ item.slug }};">
+                <img class="vt-thumb" src="{{ item.previewImageUrl }}" alt="{{ item.title }}" data-vt-name="in-motion-{{ item.slug }}" style="view-transition-name: in-motion-{{ item.slug }};">
               </a>
             {% endif %}
             <h2 class="item-title">

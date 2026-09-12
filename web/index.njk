@@ -28,7 +28,7 @@ layout: layouts/home.njk
           <div>
             {% if exhibit.previewImageUrl %}
               <a href="/exhibits/{{ exhibit.slug }}/">
-                <img src="{{ exhibit.previewImageUrl }}" alt="{{ exhibit.title }}" style="view-transition-name: exhibit-{{ exhibit.slug }};">
+                <img class="vt-thumb" src="{{ exhibit.previewImageUrl }}" alt="{{ exhibit.title }}" data-vt-name="exhibit-{{ exhibit.slug }}" style="view-transition-name: exhibit-{{ exhibit.slug }};" width="800" height="450">
               </a>
             {% endif %}
             <h2 class="item-title">

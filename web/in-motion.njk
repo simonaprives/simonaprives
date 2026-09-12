@@ -26,7 +26,6 @@ permalink: in-motion/index.html
                 frameborder="0" 
                 allow="fullscreen; picture-in-picture" 
                 allowfullscreen
-                style="view-transition-name: in-motion-{{ item.slug }};"
               ></iframe>
             </div>
           {% endif %}
@@ -45,7 +44,7 @@ permalink: in-motion/index.html
             <div>
               {% if item.previewImageUrl %}
                 <a href="/in-motion/{{ item.slug }}/">
-                  <img src="{{ item.previewImageUrl }}" alt="{{ item.title }}" style="view-transition-name: in-motion-{{ item.slug }};">
+                  <img class="vt-thumb" src="{{ item.previewImageUrl }}" alt="{{ item.title }}" data-vt-name="in-motion-{{ item.slug }}" style="view-transition-name: in-motion-{{ item.slug }};">
                 </a>
               {% endif %}
               <h2 class="item-title">
