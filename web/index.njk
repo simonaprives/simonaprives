@@ -18,6 +18,32 @@ layout: layouts/home.njk
     ></iframe>
   {% endif %}
 </div>
+<script>
+  (function () {
+    var iframe = document.querySelector(".hero-video");
+    var poster = document.querySelector(".hero-video-poster");
+    if (!iframe || !poster) return;
+
+    function onMessage(event) {
+      if (event.origin !== "https://player.vimeo.com") return;
+      var data = event.data;
+      if (typeof data === "string") {
+        try { data = JSON.parse(data); } catch (err) { return; }
+      }
+      if (!data || typeof data !== "object") return;
+      if (data.event === "ready" && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ method: "addEventListener", value: "play" }, "https://player.vimeo.com");
+        iframe.contentWindow.postMessage({ method: "addEventListener", value: "playProgress" }, "https://player.vimeo.com");
+      }
+      var playing = data.event === "play" || (data.event === "playProgress" && data.data && data.data.seconds > 0);
+      if (!playing) return;
+      poster.classList.add("is-hidden");
+      window.removeEventListener("message", onMessage);
+    }
+
+    window.addEventListener("message", onMessage);
+  })();
+</script>
 
 <article class="homepage-content">
   <h2>Exhibitions</h2>
