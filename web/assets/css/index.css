@@ -310,6 +310,21 @@
     animation: none;
     z-index: 1100;
   }
+
+  /* One shared name, applied to a single image per navigation.
+     Snapshots are bitmaps, so cover crops the box change instead of stretching. */
+  ::view-transition-group(work-image) {
+    overflow: hidden;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-old(work-image),
+  ::view-transition-new(work-image) {
+    object-fit: cover;
+    object-position: center center;
+    overflow: hidden;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -742,6 +757,10 @@
       /* inline-size: min(90vw, 1200px); */
     }
     
+    > .carousel__slide > a {
+      display: block;
+    }
+
     > .carousel__slide img {
       inline-size: auto;
       block-size: 70vh;
@@ -869,8 +888,6 @@
     list-style: none;
   }
   ul.exhibits-grid li img {
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
     width: 100%;
     max-width: 400px;
     height: auto;

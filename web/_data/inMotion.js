@@ -1,8 +1,6 @@
 const groq = require('groq')
 const client = require('../utils/sanityClient')
-const imageUrlBuilder = require('@sanity/image-url')
-
-const builder = imageUrlBuilder(client)
+const { workImageUrls } = require('../utils/workImage')
 
 module.exports = async function() {
   const query = groq`*[_type == "artworksInMotion"] | order(orderRank) {
@@ -10,6 +8,8 @@ module.exports = async function() {
     "slug": slug.current,
     description,
     mainImage,
+    "imageWidth": mainImage.asset->metadata.dimensions.width,
+    "imageHeight": mainImage.asset->metadata.dimensions.height,
     videos[]{
       title,
       "slug": slug.current,
@@ -21,16 +21,5 @@ module.exports = async function() {
 
   const docs = await client.fetch(query).catch(err => { console.error(err); return [] })
 
-  // Add preview image URLs
-  return docs.map(doc => {
-    let previewImageUrl = null
-    if (doc.mainImage) {
-      try {
-        previewImageUrl = builder.image(doc.mainImage).width(800).url()
-      } catch (err) {
-        previewImageUrl = null
-      }
-    }
-    return Object.assign({}, doc, { previewImageUrl })
-  })
+  return docs.map(doc => Object.assign({}, doc, workImageUrls(doc.mainImage)))
 }

@@ -8,6 +8,13 @@ layout: layouts/base.njk
 templateClass: tmpl-exhibit
 ---
 
+{% if exhibit.previewImageUrl %}
+<link rel="preload" as="image" href="{{ exhibit.previewImageUrl }}">
+{% endif %}
+{% if exhibit.fullImageUrl %}
+<link rel="preload" as="image" href="{{ exhibit.fullImageUrl }}">
+{% endif %}
+
 <article>
   <h1>{{ exhibit.title }}</h1>
 
@@ -24,17 +31,17 @@ templateClass: tmpl-exhibit
 
   {% if exhibit.images or exhibit.previewImageUrl %}
     <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
-      {# Same asset+URL as list/home thumbs so the morph doesn't crossfade different crops #}
       {% if exhibit.previewImageUrl %}
         <figure class="carousel__slide" data-label="{{ exhibit.title }}">
           <img
             class="vt-thumb vt-thumb--hero"
-            src="{{ exhibit.previewImageUrl }}"
+            src="{{ exhibit.fullImageUrl or exhibit.previewImageUrl }}"
+            data-preview-src="{{ exhibit.previewImageUrl }}"
+            {% if exhibit.fullImageUrl %}data-full-src="{{ exhibit.fullImageUrl }}"{% endif %}
             alt="{{ exhibit.title }}"
             data-vt-name="exhibit-{{ exhibit.slug }}"
-            style="view-transition-name: exhibit-{{ exhibit.slug }};"
-            width="800"
-            height="450"
+            data-vt-role="hero"
+            {% if exhibit.imageWidth and exhibit.imageHeight %}width="{{ exhibit.imageWidth }}" height="{{ exhibit.imageHeight }}"{% endif %}
           >
         </figure>
       {% endif %}
@@ -69,7 +76,7 @@ templateClass: tmpl-exhibit
           <div>
             {% if exhibitItem.previewImageUrl %}
               <a href="/exhibits/{{ exhibitItem.slug }}/">
-                <img class="vt-thumb" src="{{ exhibitItem.previewImageUrl }}" alt="{{ exhibitItem.title }}" data-vt-name="exhibit-{{ exhibitItem.slug }}" style="view-transition-name: exhibit-{{ exhibitItem.slug }};" width="800" height="450">
+                <img class="vt-thumb" src="{{ exhibitItem.previewImageUrl }}" alt="{{ exhibitItem.title }}" data-vt-name="exhibit-{{ exhibitItem.slug }}" data-vt-role="grid" {% if exhibitItem.imageWidth and exhibitItem.imageHeight %}width="{{ exhibitItem.imageWidth }}" height="{{ exhibitItem.imageHeight }}"{% endif %}>
               </a>
             {% endif %}
             <h2 class="item-title">

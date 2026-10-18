@@ -44,7 +44,7 @@ permalink: in-motion/index.html
             <div>
               {% if item.previewImageUrl %}
                 <a href="/in-motion/{{ item.slug }}/">
-                  <img class="vt-thumb" src="{{ item.previewImageUrl }}" alt="{{ item.title }}" data-vt-name="in-motion-{{ item.slug }}" style="view-transition-name: in-motion-{{ item.slug }};">
+                  <img class="vt-thumb" src="{{ item.previewImageUrl }}" alt="{{ item.title }}" data-vt-name="in-motion-{{ item.slug }}" data-vt-role="grid" {% if item.imageWidth and item.imageHeight %}width="{{ item.imageWidth }}" height="{{ item.imageHeight }}"{% endif %}>
                 </a>
               {% endif %}
               <h2 class="item-title">

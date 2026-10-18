@@ -18,12 +18,22 @@ permalink: exhibits/index.html
     <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
       {% for exhibit in exhibits %}
         <figure class="carousel__slide" data-label="{{ exhibit.title }}">
-          {% if exhibit.images[0] and exhibit.images[0].asset %}
+          {% if exhibit.previewImageUrl %}
+            <a href="/exhibits/{{ exhibit.slug }}/">
+              <img
+                class="vt-thumb"
+                src="{{ exhibit.fullImageUrl or exhibit.previewImageUrl }}"
+                data-preview-src="{{ exhibit.previewImageUrl }}"
+                {% if exhibit.fullImageUrl %}data-full-src="{{ exhibit.fullImageUrl }}"{% endif %}
+                data-vt-name="exhibit-{{ exhibit.slug }}"
+                data-vt-role="carousel"
+                alt="{{ exhibit.title }}"
+                {% if exhibit.imageWidth and exhibit.imageHeight %}width="{{ exhibit.imageWidth }}" height="{{ exhibit.imageHeight }}"{% endif %}
+              >
+            </a>
+          {% elif exhibit.images[0] and exhibit.images[0].asset %}
             {% set imageUrl = metadata.imageUrl(exhibit.images[0], 1200) %}
             <img src="{{ imageUrl }}" alt="{{ exhibit.images[0].alt or exhibit.title }}">
-          {% elif exhibit.mainImage and exhibit.mainImage.asset %}
-            {% set imageUrl = metadata.imageUrl(exhibit.mainImage, 1200) %}
-            <img src="{{ imageUrl }}" alt="{{ exhibit.title }}">
           {% endif %}
           <figcaption>
             <a href="/exhibits/{{ exhibit.slug }}/">{{ exhibit.title }}</a>
@@ -43,7 +53,7 @@ permalink: exhibits/index.html
           <div>
             {% if exhibit.previewImageUrl %}
               <a href="/exhibits/{{ exhibit.slug }}/">
-                <img class="vt-thumb" src="{{ exhibit.previewImageUrl }}" alt="{{ exhibit.title }}" data-vt-name="exhibit-{{ exhibit.slug }}" style="view-transition-name: exhibit-{{ exhibit.slug }};" width="800" height="450">
+                <img class="vt-thumb" src="{{ exhibit.previewImageUrl }}" alt="{{ exhibit.title }}" data-vt-name="exhibit-{{ exhibit.slug }}" data-vt-role="grid" {% if exhibit.imageWidth and exhibit.imageHeight %}width="{{ exhibit.imageWidth }}" height="{{ exhibit.imageHeight }}"{% endif %}>
               </a>
             {% endif %}
             <h2 class="item-title">

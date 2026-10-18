@@ -54,7 +54,7 @@ layout: layouts/home.njk
           <div>
             {% if exhibit.previewImageUrl %}
               <a href="/exhibits/{{ exhibit.slug }}/">
-                <img class="vt-thumb" src="{{ exhibit.previewImageUrl }}" alt="{{ exhibit.title }}" data-vt-name="exhibit-{{ exhibit.slug }}" style="view-transition-name: exhibit-{{ exhibit.slug }};" width="800" height="450">
+                <img class="vt-thumb" src="{{ exhibit.previewImageUrl }}" alt="{{ exhibit.title }}" data-vt-name="exhibit-{{ exhibit.slug }}" data-vt-role="grid" {% if exhibit.imageWidth and exhibit.imageHeight %}width="{{ exhibit.imageWidth }}" height="{{ exhibit.imageHeight }}"{% endif %}>
               </a>
             {% endif %}
             <h2 class="item-title">
