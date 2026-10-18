@@ -4,6 +4,11 @@
     --color-gray-40: #C0C0C0;
     --color-gray-60: #787878;
     --color-gray-80: #333;
+
+    --font-sans: "ff-din-paneuropean", system-ui, sans-serif;
+    --font-sans-condensed: "ff-din-paneuropean-cond", system-ui, sans-serif;
+    --font-weight-text: 300;
+    --font-weight-bold: 700;
   }
   @media (prefers-color-scheme: dark) {
 	:root {
@@ -21,7 +26,9 @@
   html {
     color-scheme: light dark;
     /* font:clamp(.8rem, .8rem + 0.5vw, 2rem) / 1.4 system-ui, sans-serif; */
-    font-family: roboto, system-ui, sans-serif;
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-text);
+    font-synthesis: none;
     font-size: clamp(1em, 17px + 0.24vw, 1.125em);
     tab-size: 2;
     hanging-punctuation: first allow-end last;
@@ -60,9 +67,19 @@
   }
 
   h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  b,
+  strong {
+    font-weight: var(--font-weight-bold);
+  }
+  h1,
   h2 {
-    font-weight: 900;
     letter-spacing: -0.02rem;
+    font-family: var(--font-sans-condensed);
   }
   h1,
   h2,
@@ -89,7 +106,8 @@
     margin-top: 1em;
   }
   a {
-    color: var(--color-gray-60);
+    /* color: var(--color-gray-60); */
+    color: inherit;
     text-underline-offset: 2px;
     /* &:not(:is(:hover, :focus)) {
       text-decoration-color: color-mix(in srgb, currentColor, transparent 50%);
@@ -322,7 +340,7 @@
   .home-link {
     flex-grow: 1;
     font-size: 1em; /* 16px /16 */
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
   }
   .home-link:link:not(:hover) {
     text-decoration: none;
@@ -658,7 +676,7 @@
   h2.item-title {
     margin-block: .4em;
     font-size: clamp(.8rem, .8rem + 0.5vw, 2rem);
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
   }
   section.gallery {
     display: flex;
@@ -858,7 +876,7 @@
 
   .biolinks-title {
     /* font-size: 40px; */
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
     line-height: 1.2;
     letter-spacing: -0.8px;
     text-align: center;
@@ -931,7 +949,7 @@
     border-bottom: 2px solid transparent;
     padding: 8px 0;
     font-size: inherit;
-    font-weight: 400;
+    font-weight: var(--font-weight-text);
     color: var(--color-gray-60);
     cursor: pointer;
     white-space: nowrap;
@@ -945,7 +963,7 @@
   .cv-tabs__tab[aria-selected="true"] {
     color: var(--color-gray-80);
     border-bottom-color: var(--color-gray-80);
-    font-weight: 400;
+    font-weight: var(--font-weight-text);
   }
 
   .cv-tabs__content {
@@ -973,10 +991,10 @@
   }
 
   .cv-item__year {
-    font-weight: 400;
+    font-weight: var(--font-weight-text);
   }
 
   .cv-item__title {
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
   }
 }

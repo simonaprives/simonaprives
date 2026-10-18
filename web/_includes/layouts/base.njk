@@ -6,7 +6,10 @@
     <meta name="view-transition" content="same-origin">
     <title>{{ renderData.title or title or metadata.title }}</title>
     <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
     <link rel="stylesheet" href="{{ '/assets/css/index.css' | url }}">
+    <link rel="stylesheet" href="https://use.typekit.net/seq6fdk.css">
     {% if homePage and homePage.posterImageUrl %}
     <link rel="preload" as="image" href="{{ homePage.posterImageUrl }}">
     {% endif %}
