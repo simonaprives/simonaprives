@@ -206,10 +206,6 @@
     font-family: ui-monospace, SFMono-Regular, monospace;
   }
 
-  svg {
-    fill: currentColor;
-  }
-
   [aria-disabled="true" i],
   [disabled] {
     cursor: not-allowed;
@@ -607,15 +603,8 @@
     }
   }
   
-  body:has(.tmpl-home) .social-links svg {
-    fill: var(--color-gray-20);
-    fill: var(--color-white-00);
-    /* filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5)); */
-  }
-  
-  body:has(.tmpl-home) .mobile-menu .social-links svg {
-    filter: none;
-
+  body:has(.tmpl-home) .mobile-menu .social-links {
+    color: var(--color-gray-60);
   }
 }
 
@@ -901,6 +890,16 @@
     display: flex;
     gap: 24px;
     padding-block-start: .4em;
+    color: var(--color-gray-60);
+  }
+  ul.social-links a {
+    transition: color 0.2s ease;
+  }
+  ul.social-links a:is(:hover, :focus-visible) {
+    color: var(--color-gray-80);
+  }
+  body:has(.tmpl-home) header .social-links a:is(:hover, :focus-visible) {
+    color: #fff;
   }
   ul.social-links li {
     align-self: baseline;
