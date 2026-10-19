@@ -27,7 +27,7 @@ permalink: on-paper/index.html
             {% if artwork.title or artwork.dimensions or artwork.description %}
               <figcaption>
                 {% if artwork.title %}<strong>{{ artwork.title }}</strong>{% endif %}
-                {% if artwork.dimensions %} | <em>{{ artwork.dimensions }}</em>{% endif %}
+                {% if artwork.dimensions %} | {{ artwork.dimensions }}{% endif %}
                 {% if artwork.description %} | {{ artwork.description }}{% endif %}
               </figcaption>
             {% endif %}
