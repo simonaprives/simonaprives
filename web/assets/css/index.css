@@ -4,7 +4,7 @@
     --color-gray-40: #C0C0C0;
     --color-gray-60: #787878;
     --color-gray-80: #333;
-
+    --color-gray-90: #111;
     --font-sans: "ff-din-paneuropean", system-ui, sans-serif;
     --font-sans-condensed: "ff-din-paneuropean-cond", system-ui, sans-serif;
     --font-weight-text: 300;
@@ -860,6 +860,188 @@
       height: auto;
       width: 100%;
     }
+  }
+
+  .present-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-block-end: 1.25rem;
+  }
+
+  .present-heading h1 {
+    margin: 0;
+  }
+
+  .present-launch {
+    display: grid;
+    flex: none;
+    place-items: center;
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    padding: 0;
+    border: 2px solid var(--color-gray-40);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--color-gray-60);
+    cursor: pointer;
+  }
+
+  .present-launch svg {
+    inline-size: 0.8rem;
+    block-size: 0.8rem;
+  }
+
+  .present-launch:is(:hover, :focus-visible) {
+    color: var(--color-gray-80);
+    border-color: var(--color-gray-60);
+  }
+
+  .present {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+    background: #000;
+    color: #e0e0e0;
+  }
+
+  .present::backdrop {
+    background: #000;
+  }
+
+  .present__stage {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    container-type: size;
+  }
+
+  .present__stage img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .present__slide {
+    grid-area: 1 / 1;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.45s ease;
+  }
+
+  .present__stage iframe {
+    width: min(100cqw, calc(100cqh * 16 / 9));
+    height: min(100cqh, calc(100cqw * 9 / 16));
+    border: 0;
+    background: #000;
+  }
+
+  .present__nav {
+    position: absolute;
+    z-index: 3;
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    inline-size: 76px;
+    block-size: 76px;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .present__nav img {
+    display: block;
+    inline-size: 76px;
+    block-size: 76px;
+  }
+
+  .present__nav--prev {
+    inset-inline-start: 0;
+  }
+
+  .present__nav--next {
+    inset-inline-end: 0;
+  }
+
+  @media (width < 768px) {
+    .present__nav {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .present__slide {
+      transition: none;
+    }
+  }
+
+  .present__empty {
+    margin: 0;
+  }
+
+  .present__edge {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: start;
+    min-block-size: 5rem;
+  }
+
+  .present__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    align-items: end;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgb(0 0 0 / 0.72);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .present__edge:hover .present__controls,
+  .present__edge:focus-within .present__controls {
+    opacity: 1;
+  }
+
+  .present__controls label {
+    display: grid;
+    gap: 0.2rem;
+    font-size: 0.8rem;
+  }
+
+  .present__controls select,
+  .present__controls input,
+  .present__controls button {
+    color: #e0e0e0;
+    background: transparent;
+    border: 0;
+    border-block-end: 1px solid rgb(224 224 224 / 0.4);
+    padding: 0.15rem 0;
+  }
+
+  .present__controls [data-close] {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border: 0;
   }
 }
 

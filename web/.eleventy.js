@@ -37,6 +37,11 @@ module.exports = function(eleventyConfig) {
     return md.render(value)
   })
 
+  eleventyConfig.addFilter("presentCatalog", function(exhibits, inMotion, onPaper) {
+    const { buildPresentCatalog } = require("./utils/presentCatalog")
+    return buildPresentCatalog(exhibits, inMotion, onPaper)
+  })
+
   // Copy CSS and images to output
   eleventyConfig.addPassthroughCopy("assets/css");
   eleventyConfig.addPassthroughCopy("assets/images");

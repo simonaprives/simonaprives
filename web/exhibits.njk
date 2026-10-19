@@ -22,6 +22,7 @@ permalink: exhibits/index.html
                 class="vt-thumb"
                 src="{{ exhibit.fullImageUrl or exhibit.previewImageUrl }}"
                 data-preview-src="{{ exhibit.previewImageUrl }}"
+                {% if exhibit.presentImageUrl %}data-present-src="{{ exhibit.presentImageUrl }}"{% endif %}
                 {% if exhibit.fullImageUrl %}data-full-src="{{ exhibit.fullImageUrl }}"{% endif %}
                 data-vt-name="exhibit-{{ exhibit.slug }}"
                 data-vt-role="carousel"
@@ -31,7 +32,8 @@ permalink: exhibits/index.html
             </a>
           {% elif exhibit.images[0] and exhibit.images[0].asset %}
             {% set imageUrl = metadata.imageUrl(exhibit.images[0], 1200) %}
-            <img src="{{ imageUrl }}" alt="{{ exhibit.images[0].alt or exhibit.title }}">
+            {% set presentUrl = metadata.imageUrl(exhibit.images[0], 2400) %}
+            <img src="{{ imageUrl }}" {% if presentUrl %}data-present-src="{{ presentUrl }}"{% endif %} alt="{{ exhibit.images[0].alt or exhibit.title }}">
           {% endif %}
           <figcaption>
             <a href="/exhibits/{{ exhibit.slug }}/">{{ exhibit.title }}</a>

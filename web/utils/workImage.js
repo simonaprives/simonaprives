@@ -3,18 +3,26 @@ const client = require("./sanityClient");
 
 const builder = imageUrlBuilder(client);
 
-// Same crop and hotspot. Only the requested width changes, so a morph can
-// start on the preview and swap to the sharper file after the snapshot.
+function urls(image) {
+  return {
+    previewImageUrl: builder.image(image).width(800).url(),
+    fullImageUrl: builder.image(image).width(1200).url(),
+    presentImageUrl: builder.image(image).width(2400).url(),
+  };
+}
+
+// Same crop and hotspot. Only the requested width changes.
 function workImageUrls(image) {
-  if (!image) return { previewImageUrl: null, fullImageUrl: null };
+  if (!image) return { previewImageUrl: null, fullImageUrl: null, presentImageUrl: null };
   try {
-    return {
-      previewImageUrl: builder.image(image).width(800).url(),
-      fullImageUrl: builder.image(image).width(1200).url(),
-    };
+    return urls(image);
   } catch (err) {
-    return { previewImageUrl: null, fullImageUrl: null };
+    return { previewImageUrl: null, fullImageUrl: null, presentImageUrl: null };
   }
 }
 
-module.exports = { workImageUrls };
+function presentUrl(image) {
+  return workImageUrls(image).presentImageUrl;
+}
+
+module.exports = { workImageUrls, presentUrl };

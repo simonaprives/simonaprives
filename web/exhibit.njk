@@ -30,13 +30,14 @@ templateClass: tmpl-exhibit
   {% endif %}
 
   {% if exhibit.images or exhibit.previewImageUrl %}
-    <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
+    <section class="carousel carousel--scroll-buttons carousel--scroll-markers" data-present-id="exhibits/{{ exhibit.slug }}">
       {% if exhibit.previewImageUrl %}
         <figure class="carousel__slide" data-label="{{ exhibit.title }}">
           <img
             class="vt-thumb vt-thumb--hero"
             src="{{ exhibit.fullImageUrl or exhibit.previewImageUrl }}"
             data-preview-src="{{ exhibit.previewImageUrl }}"
+            {% if exhibit.presentImageUrl %}data-present-src="{{ exhibit.presentImageUrl }}"{% endif %}
             {% if exhibit.fullImageUrl %}data-full-src="{{ exhibit.fullImageUrl }}"{% endif %}
             alt="{{ exhibit.title }}"
             data-vt-name="exhibit-{{ exhibit.slug }}"
@@ -49,8 +50,9 @@ templateClass: tmpl-exhibit
         {% set skipMain = exhibit.mainImage and image.asset and exhibit.mainImage.asset and image.asset._ref == exhibit.mainImage.asset._ref %}
         {% if image.asset and not skipMain %}
           {% set imageUrl = metadata.imageUrl(image, 1200) %}
+          {% set presentUrl = metadata.imageUrl(image, 2400) %}
           <figure class="carousel__slide" data-label="Slide {{ loop.index }}">
-            <img src="{{ imageUrl }}" alt="{{ image.alt or exhibit.title }}">
+            <img src="{{ imageUrl }}" {% if presentUrl %}data-present-src="{{ presentUrl }}"{% endif %} alt="{{ image.alt or exhibit.title }}">
             {% if image.caption %}
               <figcaption>{{ image.caption }}</figcaption>
             {% endif %}

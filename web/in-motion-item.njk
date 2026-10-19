@@ -23,13 +23,14 @@ templateClass: tmpl-in-motion-item
   {% endif %}
 
   {% if motion.videos or motion.previewImageUrl %}
-    <section class="carousel carousel--scroll-buttons carousel--scroll-markers">
+    <section class="carousel carousel--scroll-buttons carousel--scroll-markers" data-present-id="in-motion/{{ motion.slug }}">
       {% if motion.previewImageUrl %}
         <figure class="carousel__slide" data-label="{{ motion.title }}">
           <img
             class="vt-thumb vt-thumb--hero"
             src="{{ motion.fullImageUrl or motion.previewImageUrl }}"
             data-preview-src="{{ motion.previewImageUrl }}"
+            {% if motion.presentImageUrl %}data-present-src="{{ motion.presentImageUrl }}"{% endif %}
             {% if motion.fullImageUrl %}data-full-src="{{ motion.fullImageUrl }}"{% endif %}
             alt="{{ motion.title }}"
             data-vt-name="in-motion-{{ motion.slug }}"
@@ -52,7 +53,8 @@ templateClass: tmpl-in-motion-item
             </div>
           {% elif video.mainImage and video.mainImage.asset %}
             {% set imageUrl = metadata.imageUrl(video.mainImage, 1200) %}
-            <img src="{{ imageUrl }}" alt="{{ video.title or motion.title }}">
+            {% set presentUrl = metadata.imageUrl(video.mainImage, 2400) %}
+            <img src="{{ imageUrl }}" {% if presentUrl %}data-present-src="{{ presentUrl }}"{% endif %} alt="{{ video.title or motion.title }}">
           {% endif %}
           {% if video.title %}
             <figcaption><strong>{{ video.title }}</strong></figcaption>
