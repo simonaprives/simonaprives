@@ -6,6 +6,10 @@
     <title>{{ renderData.title or title or metadata.title }}</title>
     <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
     <link rel="icon" href="{{ '/assets/images/favicon.png' | url }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | url }}">
+    <link rel="manifest" href="{{ '/assets/manifest.webmanifest' | url }}">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
     <link rel="preconnect" href="https://use.typekit.net" crossorigin>
     <link rel="preconnect" href="https://p.typekit.net" crossorigin>
     <link rel="stylesheet" href="{{ '/assets/css/index.css' | url }}">
