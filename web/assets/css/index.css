@@ -574,7 +574,7 @@
   }
 
   body:has(.tmpl-home) article.homepage-content {
-    margin-block-start: 0px;
+    margin-block-start: 2.5rem;
     margin-block-end: 3rem;
   }
 
@@ -676,7 +676,7 @@
   }
 
   article.homepage-content {
-    margin-block-start: 0px;
+    margin-block-start: 2.5rem;
   }
   
   /* About page 2-column layout */
@@ -1049,10 +1049,11 @@
 }
 
 @layer components {
-  /* exhibits grid */
+  /* Thumbnail grids (exhibits, in-motion, etc.) */
   ul.exhibits-grid {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+    /* Fill the row; wrap to 2+ cols when ~260px each fits */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     list-style: none;
     gap: 2rem;
     margin: 0;
@@ -1060,10 +1061,10 @@
   }
   ul.exhibits-grid li {
     list-style: none;
+    min-width: 0;
   }
   ul.exhibits-grid li img {
     width: 100%;
-    max-width: 400px;
     height: auto;
     aspect-ratio: 16 / 9;
     object-fit: cover;
